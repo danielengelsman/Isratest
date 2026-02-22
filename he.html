@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IsraTransfer — הדרך הטובה ביותר לשלוח כסף לישראל</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #003CAA;
+      --teal:       #00A0FF;
+      --navy:       #0A1628;
+      --soft-white: #FAFBFC;
+      --light-bg:   #F0F4F8;
+      --text-dark:  #0A1628;
+      --text-gray:  #5A6B7D;
+      --green:      #00C853;
+    }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      color: var(--text-dark);
+      background: var(--soft-white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      direction: rtl;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(29,61,143,.1);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 1.4rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a {
+      color: var(--text-dark); text-decoration: none;
+      font-weight: 600; font-size: .95rem;
+      transition: color .3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; right: 0; width: 0; height: 2px;
+      background: var(--blue); transition: width .3s; border-radius: 2px;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover::after { width: 100%; }
+    .btn-nav {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; padding: .85rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .95rem;
+      transition: transform .3s, box-shadow .3s; box-shadow: 0 4px 15px rgba(29,61,143,.3);
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(29,61,143,.4); }
+    .btn-nav:active { transform: translateY(0); }
+    .btn-nav:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-login {
+      border: 2px solid var(--blue); color: var(--blue);
+      padding: .75rem 1.6rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .95rem;
+      transition: background .3s, color .3s;
+    }
+    .btn-login:hover { background: var(--blue); color: #fff; }
+    .btn-login:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* ── LANGUAGE DROPDOWN ── */
+    .lang-dropdown { position: relative; }
+    .lang-trigger {
+      display: flex; align-items: center; gap: 0.42rem;
+      background: none; border: 1.5px solid rgba(0,60,170,0.2);
+      border-radius: 8px; padding: 0.5rem 0.8rem;
+      cursor: pointer; font-family: 'Heebo', sans-serif;
+      font-size: 0.8rem; font-weight: 700; color: var(--text-gray);
+      transition: background .18s, border-color .18s, color .18s;
+      white-space: nowrap;
+    }
+    .lang-trigger:hover { background: rgba(0,60,170,0.05); border-color: var(--blue); color: var(--blue); }
+    .lang-trigger:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 8px; }
+    .lang-flag { font-size: 1rem; line-height: 1; }
+    .lang-chevron { transition: transform .22s cubic-bezier(0.4,0,0.2,1); }
+    .lang-dropdown.open .lang-chevron { transform: rotate(180deg); }
+    .lang-menu {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: #fff;
+      border: 1px solid rgba(0,60,170,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,60,170,0.08), 0 16px 40px rgba(0,60,170,0.1);
+      min-width: 168px; z-index: 200; overflow: hidden;
+      opacity: 0; visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity .2s, visibility .2s, transform .22s cubic-bezier(0.4,0,0.2,1);
+    }
+    .lang-dropdown.open .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .lang-option {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.72rem 1rem;
+      font-size: 0.84rem; font-weight: 600; color: var(--text-gray);
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+    .lang-option + .lang-option { border-top: 1px solid rgba(0,60,170,0.06); }
+    .lang-option:hover { background: var(--light-bg); color: var(--blue); }
+    .lang-option.active { background: rgba(0,60,170,0.04); color: var(--blue); font-weight: 700; }
+    .lang-option-flag { font-size: 1.1rem; }
+    .lang-option-label { flex: 1; }
+    .lang-option-check { opacity: 0; flex-shrink: 0; }
+    .lang-option.active .lang-option-check { opacity: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 88px; min-height: 95vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -30%; right: -15%;
+      width: 900px; height: 900px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,168,204,.14) 0%, transparent 70%);
+      animation: bgPulse 8s ease-in-out infinite;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -20%; left: -10%;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,61,143,.1) 0%, transparent 70%);
+      animation: bgPulse 10s ease-in-out infinite reverse;
+    }
+    @keyframes bgPulse {
+      0%,100% { transform: scale(1) translate(0,0); }
+      50% { transform: scale(1.1) translate(20px,-20px); }
+    }
+
+    .hero-inner {
+      max-width: 1400px; margin: 0 auto; padding: 4rem 3rem;
+      display: grid; grid-template-columns: 1.15fr 1fr; gap: 5rem;
+      align-items: center; position: relative; z-index: 1; width: 100%;
+    }
+
+    .hero-h1 {
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -2px; margin-bottom: 1.8rem;
+    }
+    .grad { background: linear-gradient(135deg, var(--blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .accent { color: var(--teal); }
+
+    .hero-sub {
+      font-size: 1.25rem; color: var(--text-gray);
+      line-height: 1.65; margin-bottom: 2.8rem; font-weight: 400;
+    }
+    .hero-cta { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; padding: 1.2rem 2.8rem; border-radius: 50px;
+      text-decoration: none; font-weight: 800; font-size: 1.05rem;
+      transition: transform .3s, box-shadow .3s; box-shadow: 0 8px 30px rgba(29,61,143,.35);
+    }
+    .btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(29,61,143,.45); }
+    .btn-hero-primary:active { transform: translateY(-1px); }
+    .btn-hero-primary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-hero-ghost {
+      color: var(--blue); text-decoration: none;
+      font-weight: 700; font-size: 1.05rem;
+      display: flex; align-items: center; gap: .5rem; transition: gap .3s;
+    }
+    .btn-hero-ghost:hover { gap: 1rem; }
+    .btn-hero-ghost:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+
+    .hero-trust {
+      margin-top: 2rem; display: flex; align-items: center; gap: 1.5rem;
+      font-size: .82rem; color: var(--text-gray); font-weight: 500;
+    }
+    .trust-item { display: flex; align-items: center; gap: .4rem; }
+    .trust-item svg { flex-shrink: 0; }
+
+    /* Rate card */
+    .hero-visual { position: relative; }
+    .rate-card {
+      background: #fff; border-radius: 30px; padding: 2.5rem;
+      box-shadow: 0 30px 80px rgba(0,0,0,.12);
+      position: relative; overflow: hidden;
+    }
+    .rate-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+    .rate-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .rate-label { font-size: .95rem; color: var(--text-gray); font-weight: 600; }
+    .live-badge { display: flex; align-items: center; gap: .4rem; color: var(--green); font-weight: 700; font-size: .85rem; }
+    .live-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* multi-rate rows */
+    .rate-rows { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.5rem; }
+    .rate-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.2rem; background: linear-gradient(135deg, rgba(29,61,143,.04), rgba(0,168,204,.04)); border-radius: 16px; }
+    .rate-row-left { display: flex; align-items: center; gap: .8rem; }
+    .rate-flag { font-size: 1.5rem; }
+    .rate-pair-name { font-size: .88rem; font-weight: 700; color: var(--text-dark); }
+    .rate-pair-sub { font-size: .73rem; color: var(--text-gray); margin-top: 2px; }
+    .rate-val { font-size: 1.4rem; font-weight: 900; color: var(--blue); letter-spacing: -.03em; }
+    .rate-save-tag { font-size: .68rem; font-weight: 700; color: var(--green); margin-top: 2px; text-align: left; }
+
+    .savings-box {
+      background: linear-gradient(135deg, rgba(29,61,143,.06), rgba(0,168,204,.06));
+      padding: 1.3rem 1.5rem; border-radius: 18px;
+    }
+    .savings-label { font-size: .88rem; color: var(--text-gray); margin-bottom: .3rem; font-weight: 500; }
+    .savings-amount { font-size: 1.8rem; font-weight: 900; color: var(--green); letter-spacing: -.03em; }
+    .savings-sub { font-size: .78rem; color: var(--text-gray); margin-top: .3rem; }
+
+    /* Floating badges */
+    .float-badge {
+      position: absolute; background: #fff;
+      padding: 1rem 1.5rem; border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.1);
+      font-weight: 700; font-size: .88rem;
+      display: flex; align-items: center; gap: .7rem;
+      white-space: nowrap;
+    }
+    .fb1 { top: -18px; left: -18px; animation: floatUp 6s ease-in-out infinite; }
+    .fb2 { bottom: 50px; right: -42px; animation: floatUp 7s ease-in-out infinite 1s; }
+    @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    .fb-icon { width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg, var(--blue), var(--teal)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(135deg, #00183a 0%, #001f50 100%);
+      padding: 0 3rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      position: relative; overflow: hidden;
+    }
+    .stats-bar::before {
+      content: ''; position: absolute; top: -60%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(0,160,255,.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .stats-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: stretch;
+      position: relative; z-index: 1;
+    }
+    .stat {
+      flex: 1; text-align: center;
+      padding: 3rem 2rem;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      position: relative;
+      transition: background .3s;
+    }
+    .stat:hover { background: rgba(255,255,255,.03); }
+    .stat-divider {
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.12), transparent);
+      align-self: stretch; flex-shrink: 0;
+    }
+    .stat-num {
+      font-size: 3.2rem; font-weight: 900;
+      background: linear-gradient(135deg, #fff 30%, var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; letter-spacing: -.05em; line-height: 1;
+    }
+    .stat-lbl {
+      font-size: .82rem; color: rgba(255,255,255,.45);
+      font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
+      margin-top: .2rem;
+    }
+
+    /* ── SECTION SHARED ── */
+    .section-wrap { max-width: 1400px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 5rem; }
+    .s-eyebrow { font-size: .85rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; }
+    .s-title { font-size: clamp(2rem,4vw,3.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 1.2rem; }
+    .s-sub { font-size: 1.15rem; color: var(--text-gray); max-width: 650px; margin: 0 auto; line-height: 1.65; font-weight: 400; }
+
+    /* ── FEATURES ── */
+    .features { padding: 8rem 3rem; background: #fff; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; }
+    .feat-card {
+      background: linear-gradient(135deg, rgba(29,61,143,.03), rgba(0,168,204,.03));
+      padding: 2.8rem; border-radius: 28px;
+      border: 2px solid transparent;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s, box-shadow .4s;
+      position: relative; overflow: hidden;
+    }
+    .feat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(29,61,143,.06), rgba(0,168,204,.06));
+      opacity: 0; transition: opacity .4s; border-radius: 28px;
+    }
+    .feat-card:hover { transform: translateY(-10px); border-color: rgba(29,61,143,.3); box-shadow: 0 20px 60px rgba(29,61,143,.13); }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-card > * { position: relative; z-index: 1; }
+
+    .feat-icon-wrap {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 20px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 8px 24px rgba(29,61,143,.25);
+    }
+    .feat-title { font-size: 1.4rem; font-weight: 800; margin-bottom: .8rem; }
+    .feat-desc { color: var(--text-gray); line-height: 1.7; font-size: 1rem; font-weight: 400; }
+
+    /* ── PROCESS ── */
+    .process { padding: 8rem 3rem; background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%); }
+    .process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3.5rem; margin-top: 5rem; position: relative; }
+    .process-grid::before {
+      content: ''; position: absolute; top: 48px; left: calc(16.6% + 20px); right: calc(16.6% + 20px);
+      height: 2px; background: linear-gradient(90deg, var(--blue), var(--teal));
+      opacity: .25; z-index: 0;
+    }
+    .process-step { text-align: center; position: relative; z-index: 1; }
+    .step-num {
+      width: 96px; height: 96px; margin: 0 auto 2rem;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; font-weight: 900; color: #fff;
+      box-shadow: 0 10px 30px rgba(29,61,143,.3);
+    }
+    .step-title { font-size: 1.5rem; font-weight: 800; margin-bottom: .8rem; }
+    .step-desc { color: var(--text-gray); font-size: 1rem; line-height: 1.7; font-weight: 400; }
+
+    /* ── TESTIMONIALS ── */
+    .testi { padding: 8rem 3rem; background: #fff; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; margin-top: 5rem; }
+    .testi-card {
+      background: linear-gradient(135deg, rgba(29,61,143,.03), rgba(0,168,204,.03));
+      border: 2px solid rgba(29,61,143,.08);
+      border-radius: 28px; padding: 2.5rem;
+      transition: transform .4s, box-shadow .4s, border-color .4s; position: relative; overflow: hidden;
+    }
+    .testi-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(29,61,143,.12); border-color: rgba(29,61,143,.25); }
+    .testi-stars { color: var(--teal); font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 1.2rem; }
+    .testi-quote-mark {
+      font-size: 6rem; font-weight: 900; line-height: .8;
+      color: rgba(29,61,143,.07); margin-bottom: -.5rem;
+      font-family: Georgia, serif;
+    }
+    .testi-text { font-size: 1rem; color: var(--text-gray); line-height: 1.72; margin-bottom: 1.8rem; font-weight: 400; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 1rem; }
+    .testi-av {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+      font-size: .82rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 800; font-size: .95rem; }
+    .testi-role { font-size: .8rem; color: var(--text-gray); margin-top: 2px; }
+
+    /* ── FAQ ── */
+    .faq-section { padding: 8rem 3rem; background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%); }
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item {
+      background: #fff;
+      border: 1.5px solid rgba(0,60,170,0.08);
+      border-radius: 16px; overflow: hidden;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .faq-item.open {
+      border-color: rgba(0,60,170,0.22);
+      box-shadow: 0 4px 20px rgba(0,60,170,0.08);
+    }
+    .faq-q {
+      width: 100%; text-align: right; background: none; border: none; cursor: pointer;
+      padding: 1.25rem 1.6rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      font-family: 'Heebo', sans-serif;
+      font-size: 0.96rem; font-weight: 700; color: var(--text-dark);
+      transition: color .2s;
+    }
+    .faq-q:hover { color: var(--blue); }
+    .faq-q:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; border-radius: 14px; }
+    .faq-icon {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--light-bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .25s, transform .35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-item.open .faq-icon {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      transform: rotate(45deg);
+    }
+    .faq-item.open .faq-icon svg { stroke: #fff; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(0.4,0,0.2,1); }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a-inner {
+      padding: 1rem 1.6rem 1.4rem;
+      font-size: 0.92rem; color: var(--text-gray); line-height: 1.78; font-weight: 400;
+      border-top: 1px solid rgba(0,60,170,0.07);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 8rem 3rem;
+      background: linear-gradient(135deg, var(--navy), #0D2847);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+      width: 1000px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,168,204,.12) 0%, transparent 65%);
+    }
+    .cta-section::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .cta-h2 { font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 1.5rem; }
+    .cta-h2 .grad { background: linear-gradient(135deg, var(--teal), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-p { font-size: 1.3rem; opacity: .8; margin-bottom: 3rem; font-weight: 400; line-height: 1.6; }
+    .cta-btns { display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-primary {
+      background: #fff; color: var(--blue);
+      padding: 1.4rem 3.2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 800; font-size: 1.1rem;
+      transition: transform .3s, box-shadow .3s, background .3s; box-shadow: 0 10px 40px rgba(255,255,255,.2);
+    }
+    .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(255,255,255,.3); background: #f0f4ff; }
+    .btn-cta-primary:active { transform: translateY(-1px); }
+    .btn-cta-primary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-cta-outline {
+      background: transparent; color: #fff;
+      border: 2.5px solid rgba(255,255,255,.5); padding: 1.4rem 3.2rem;
+      border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem;
+      transition: background .3s, border-color .3s, transform .3s;
+    }
+    .btn-cta-outline:hover { background: rgba(255,255,255,.1); border-color: #fff; transform: translateY(-3px); }
+    .btn-cta-outline:active { transform: translateY(-1px); }
+    .btn-cta-outline:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--soft-white);
+      border-top: 1px solid rgba(0,60,170,.1);
+    }
+    footer::before {
+      content: ''; display: block; height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+    .footer-main {
+      max-width: 1400px; margin: 0 auto;
+      padding: 4rem 3rem 3rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem;
+    }
+    .footer-logo { margin-bottom: 1.2rem; display: block; }
+    .footer-logo img { height: 38px; }
+    .footer-tagline { color: var(--text-gray); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 280px; }
+    .footer-contact-item { display: flex; align-items: center; gap: .8rem; margin-bottom: .8rem; }
+    .footer-contact-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-contact-icon svg { width:15px; height:15px; fill:none; stroke:#fff; stroke-width:2; }
+    .footer-contact-item a, .footer-contact-item span { font-size: .88rem; color: var(--text-gray); text-decoration: none; transition: color .2s; }
+    .footer-contact-item a:hover { color: var(--blue); }
+    .footer-licence-badge { margin-top: 1.5rem; padding: .75rem 1rem; background: rgba(0,60,170,.06); border: 1px solid rgba(0,60,170,.15); border-radius: 10px; }
+    .footer-licence-badge p { font-size: .78rem; color: var(--text-gray); line-height: 1.5; margin: 0; }
+    .footer-licence-badge strong { color: var(--blue); }
+    .footer-col h4 {
+      font-size: .88rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--text-dark); margin-bottom: 1.2rem; position: relative; padding-bottom: .6rem;
+    }
+    .footer-col h4::after {
+      content: ''; position: absolute; bottom: 0; right: 0; width: 24px; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--teal)); border-radius: 2px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .65rem; }
+    .footer-col ul li a { font-size: .9rem; color: var(--text-gray); text-decoration: none; transition: color .2s, padding-right .2s; display: inline-block; }
+    .footer-col ul li a:hover { color: var(--blue); padding-right: 4px; }
+    .footer-bottom { background: #F0F4F8; border-top: 1px solid rgba(0,60,170,.08); }
+    .footer-bottom-inner {
+      max-width: 1400px; margin: 0 auto; padding: 1.2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom-left { display: flex; flex-direction: column; gap: .25rem; }
+    .footer-bottom-copy { font-size: .82rem; color: var(--text-gray); }
+    .footer-regulated { font-size: .78rem; color: var(--text-gray); }
+    .footer-regulated span { color: var(--blue); font-weight: 600; }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: .82rem; color: var(--text-gray); text-decoration: none; transition: color .2s; }
+    .footer-bottom-links a:hover { color: var(--blue); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp .8s cubic-bezier(.4,0,.2,1) forwards; }
+    .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; } .d3 { animation-delay: .4s; }
+    .d4 { animation-delay: .55s; } .d5 { animation-delay: .7s; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s cubic-bezier(0.4,0,0.2,1), transform .65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: .05s; } .rd2 { transition-delay: .14s; } .rd3 { transition-delay: .22s; }
+    .rd4 { transition-delay: .3s; } .rd5 { transition-delay: .38s; } .rd6 { transition-delay: .46s; }
+
+    /* ── MOBILE MENU ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none;
+      flex-shrink: 0; z-index: 200;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-dark); border-radius: 2px;
+      transition: transform .28s cubic-bezier(0.4,0,0.2,1), opacity .2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger:focus-visible { outline: 2px solid var(--teal); border-radius: 6px; outline-offset: 2px; }
+
+    .mobile-drawer {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      z-index: 90; padding-top: 68px;
+      transform: translateY(-105%);
+      transition: transform .38s cubic-bezier(0.4,0,0.2,1);
+      border-bottom: 1px solid rgba(0,60,170,0.1);
+      box-shadow: 0 16px 56px rgba(0,60,170,0.12);
+    }
+    .mobile-drawer.open { transform: translateY(0); }
+    .mobile-drawer-inner { padding: 0.5rem 1.25rem 2rem; }
+    .mobile-nav-list { list-style: none; margin-bottom: 1.4rem; }
+    .mobile-nav-list li a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.95rem 0; font-size: 1rem; font-weight: 700; color: var(--text-dark);
+      text-decoration: none; border-bottom: 1px solid rgba(0,60,170,0.07);
+      transition: color .2s;
+    }
+    .mobile-nav-list li a:hover { color: var(--blue); }
+    .mobile-nav-list li a:focus-visible { outline: 2px solid var(--teal); border-radius: 4px; }
+    .mobile-nav-chevron { opacity: 0.3; }
+    .mobile-cta-group { display: flex; flex-direction: column; gap: 0.7rem; }
+    .mobile-cta-group a {
+      text-align: center; padding: 0.85rem; border-radius: 12px;
+      font-size: 0.93rem; display: block; text-decoration: none; font-weight: 700;
+    }
+    .mobile-lang-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .mobile-lang-opt {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 0.55rem 0.5rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 600; color: var(--text-gray);
+      text-decoration: none; border: 1.5px solid rgba(0,60,170,0.12);
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .mobile-lang-opt:hover { background: var(--light-bg); border-color: rgba(0,60,170,0.25); color: var(--blue); }
+    .mobile-lang-opt.active { background: rgba(0,60,170,0.06); border-color: var(--blue); color: var(--blue); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav-inner { padding: 1.1rem 2rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+      .feat-grid { grid-template-columns: repeat(2,1fr); gap: 1.4rem; }
+      .testi-grid { grid-template-columns: repeat(2,1fr); gap: 1.4rem; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero { margin-top: 68px; min-height: auto; padding: 2rem 0; }
+      .hero-inner { padding: 2rem 1.25rem; gap: 2rem; }
+      .hero-h1 { font-size: 2.2rem; letter-spacing: -1px; }
+      .hero-sub { font-size: 1rem; }
+      .hero-trust { flex-direction: column; align-items: flex-start; gap: .8rem; }
+      .float-badge { display: none; }
+      .stats-inner { flex-wrap: wrap; }
+      .stat { min-width: 50%; padding: 2rem 1rem; }
+      .stat-divider { display: none; }
+      .stat-num { font-size: 2.2rem; }
+      .features, .testi, .faq-section, .process { padding: 4rem 1.25rem; }
+      .section-head { margin-bottom: 3rem; }
+      .feat-grid, .process-grid, .testi-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .process-grid::before { display: none; }
+      .feat-card { padding: 2rem; }
+      .step-num { width: 72px; height: 72px; font-size: 1.8rem; }
+      .cta-section { padding: 4rem 1.25rem; }
+      .cta-h2 { font-size: 2rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .faq-q { padding: 1.05rem 1.25rem; font-size: 0.9rem; }
+      .faq-a-inner { padding: 0.9rem 1.25rem 1.2rem; }
+    }
+    @media (max-width: 900px) {
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-bottom-inner { flex-direction: column; gap: .8rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .footer-main { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+    }
+  </style>
+
+  <!-- SEO & GEO Optimisation -->
+  <meta name="description" content="IsraTransfer — מומחי חליפין מאז 2008. שלחו כסף לישראל בשערים טובים יותר מהבנקים, ללא עמלות נסתרות, ושירות ברמה גבוהה. מורשה על ידי רשות שוק ההון, ביטוח וחיסכון (רישיון 57488)."/>
+  <meta name="keywords" content="שליחת כסף לישראל, המרת מטבע ישראל, העברת שקלים, רכישת נדלן ישראל, שער חליפין שקל, IsraTransfer, העברת כספים ישראל"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="IsraTransfer"/>
+  <link rel="canonical" href="https://www.isratransfer.com/he.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="alternate" hreflang="en-gb" href="https://www.isratransfer.com/"/>
+  <link rel="alternate" hreflang="en-us" href="https://www.isratransfer.com/"/>
+  <link rel="alternate" hreflang="en-il" href="https://www.isratransfer.com/"/>
+  <link rel="alternate" hreflang="fr" href="https://www.isratransfer.com/fr.html"/>
+  <link rel="alternate" hreflang="he" href="https://www.isratransfer.com/he.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://www.isratransfer.com/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.isratransfer.com/he.html"/>
+  <meta property="og:title" content="IsraTransfer | הדרך הטובה ביותר לשלוח כסף לישראל"/>
+  <meta property="og:description" content="מומחי חליפין מאז 2008. שערים טובים יותר מהבנקים, ללא עמלות נסתרות, מורשה במלואו. יותר מ-15,000 לקוחות סומכים עלינו להעברות לישראל וממנה."/>
+  <meta property="og:site_name" content="IsraTransfer"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="IsraTransfer | הדרך הטובה ביותר לשלוח כסף לישראל"/>
+  <meta name="twitter:description" content="מומחי חליפין מאז 2008. שערים טובים יותר מהבנקים, ללא עמלות נסתרות. מורשה ואמין על ידי יותר מ-15,000 לקוחות."/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+    <ul class="nav-links">
+      <li><a href="#">רכישת נדל״ן</a></li>
+      <li><a href="#">פרטי</a></li>
+      <li><a href="#">אודות</a></li>
+      <li><a href="#faq">שאלות נפוצות</a></li>
+      <li>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button class="lang-trigger" id="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="בחירת שפה">
+            <span class="lang-flag">🇮🇱</span>
+            <span>HE</span>
+            <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="lang-menu" role="menu">
+            <a href="/" class="lang-option" role="menuitem" hreflang="en">
+              <span class="lang-option-flag">🇬🇧</span>
+              <span class="lang-option-label">English</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+            <a href="/fr.html" class="lang-option" role="menuitem" hreflang="fr">
+              <span class="lang-option-flag">🇫🇷</span>
+              <span class="lang-option-label">Français</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+            <a href="/he.html" class="lang-option active" role="menuitem" hreflang="he">
+              <span class="lang-option-flag">🇮🇱</span>
+              <span class="lang-option-label">עברית</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li><a href="https://isratransfer.my.site.com/it/login" class="btn-login">כניסת לקוחות</a></li>
+      <li><a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-nav">← פתיחת חשבון</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="תפריט ניווט">
+  <div class="mobile-drawer-inner">
+    <div class="mobile-lang-row" role="navigation" aria-label="בחירת שפה">
+      <a href="/" class="mobile-lang-opt" hreflang="en">🇬🇧 English</a>
+      <a href="/fr.html" class="mobile-lang-opt" hreflang="fr">🇫🇷 Français</a>
+      <a href="/he.html" class="mobile-lang-opt active" hreflang="he">🇮🇱 עברית</a>
+    </div>
+    <ul class="mobile-nav-list" role="list">
+      <li><a href="#">רכישת נדל״ן <span class="mobile-nav-chevron">‹</span></a></li>
+      <li><a href="#">פרטי <span class="mobile-nav-chevron">‹</span></a></li>
+      <li><a href="#">אודות <span class="mobile-nav-chevron">‹</span></a></li>
+      <li><a href="#faq">שאלות נפוצות <span class="mobile-nav-chevron">‹</span></a></li>
+    </ul>
+    <div class="mobile-cta-group">
+      <a href="https://isratransfer.my.site.com/it/login" style="border: 2px solid var(--blue); color: var(--blue);">כניסת לקוחות</a>
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" style="background: linear-gradient(135deg, var(--blue), var(--teal)); color: #fff;">← פתיחת חשבון</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-h1 fade-up d1">
+        <span class="grad">חסכו יותר</span><br>
+        כשאתם שולחים כסף<br>
+        ל<span class="accent">ישראל</span> וממנה
+      </h1>
+      <p class="hero-sub fade-up d2">שערי חליפין טובים יותר מהבנקים. אפס עמלות נסתרות. מורשה ואמין מאז 2008. הצטרפו ליותר מ-15,000 לקוחות שחוסכים בכל העברה.</p>
+      <div class="hero-cta fade-up d3">
+        <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-hero-primary">פתיחת חשבון חינם</a>
+        <a href="https://www.isratransfer.com/contact" class="btn-hero-ghost">← דברו עם מומחה</a>
+      </div>
+      <div class="hero-trust fade-up d4">
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          מורשה #57488
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          הצפנת SSL
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          פתיחה חינם
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-up d5">
+      <div class="rate-card">
+        <div class="rate-card-header">
+          <span class="rate-label">שערי חליפין של היום</span>
+          <div class="live-badge"><span class="live-dot"></span> בזמן אמת</div>
+        </div>
+        <div class="rate-rows">
+          <div class="rate-row">
+            <div class="rate-row-left">
+              <span class="rate-flag">🇺🇸</span>
+              <div><div class="rate-pair-name">USD → ILS</div><div class="rate-pair-sub">דולר אמריקאי</div></div>
+            </div>
+            <div><div class="rate-val">3.712</div><div class="rate-save-tag">↑ טוב יותר מהבנק</div></div>
+          </div>
+          <div class="rate-row">
+            <div class="rate-row-left">
+              <span class="rate-flag">🇬🇧</span>
+              <div><div class="rate-pair-name">GBP → ILS</div><div class="rate-pair-sub">לירה שטרלינג</div></div>
+            </div>
+            <div><div class="rate-val">4.701</div><div class="rate-save-tag">↑ טוב יותר מהבנק</div></div>
+          </div>
+          <div class="rate-row">
+            <div class="rate-row-left">
+              <span class="rate-flag">🇪🇺</span>
+              <div><div class="rate-pair-name">EUR → ILS</div><div class="rate-pair-sub">אירו</div></div>
+            </div>
+            <div><div class="rate-val">4.044</div><div class="rate-save-tag">↑ טוב יותר מהבנק</div></div>
+          </div>
+        </div>
+        <div class="savings-box">
+          <div class="savings-label">אתם חוסכים לעומת הבנקים בהעברה של 100,000$:</div>
+          <div class="savings-amount">$2,400+</div>
+          <div class="savings-sub">פתחו חשבון חינם · ללא התחייבות</div>
+        </div>
+      </div>
+      <div class="float-badge fb1">
+        <div class="fb-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>מורשה #57488</span>
+      </div>
+      <div class="float-badge fb2">
+        <div class="fb-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <span>העברות תוך 1-2 ימים</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num">₪10B+</span><span class="stat-lbl">סה״כ הומר</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num" data-count="15000">0</span><span class="stat-lbl">לקוחות מרוצים</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num" data-count="2500">0</span><span class="stat-lbl">רוכשי נדל״ן</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num" data-count="16">0</span><span class="stat-lbl">שנות אמון</span></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">למה לבחור בנו</div>
+      <h2 class="s-title">בנוי עבור אנשים ששולחים<br>כסף לישראל</h2>
+      <p class="s-sub">אנחנו מבינים את הצרכים של עולים, רוכשי נדל״ן ומשפחות. חסכו כסף ופשטו כל העברה.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal rd1">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="feat-title">שערים טובים יותר</div>
+        <p class="feat-desc">קבלו שערי חליפין טובים משמעותית מהבנקים המסורתיים. יותר שקלים לכל העברה — בכל פעם.</p>
+      </div>
+      <div class="feat-card reveal rd2">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="feat-title">העברות מהירות</div>
+        <p class="feat-desc">הכסף מגיע תוך 1-2 ימי עסקים. מושלם לעסקאות נדל״ן דחופות ותמיכה משפחתית.</p>
+      </div>
+      <div class="feat-card reveal rd3">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="feat-title">מורשה במלואו</div>
+        <p class="feat-desc">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון #57488. הצפנת SSL. הכסף שלכם בטוח.</p>
+      </div>
+      <div class="feat-card reveal rd1">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="feat-title">אפליקציה סלולרית</div>
+        <p class="feat-desc">נהלו הכל מהטלפון. אפליקציות iOS ואנדרואיד עם התראות שער בזמן אמת ומעקב העברות.</p>
+      </div>
+      <div class="feat-card reveal rd2">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="feat-title">תמיכה מקצועית</div>
+        <p class="feat-desc">מנהלי חשבון ייעודיים שמבינים רכישת נדל״ן ואת השוק הישראלי.</p>
+      </div>
+      <div class="feat-card reveal rd3">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="feat-title">ללא עמלות נסתרות</div>
+        <p class="feat-desc">תמחור שקוף לחלוטין. מה שאתם רואים זה מה שאתם מקבלים. ללא הפתעות, ללא אותיות קטנות.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">תהליך פשוט</div>
+      <h2 class="s-title">התחילו תוך דקות</h2>
+      <p class="s-sub">שלושה שלבים פשוטים כדי להתחיל לחסוך בכל העברה לישראל</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal rd1">
+        <div class="step-num">1</div>
+        <div class="step-title">הרשמה חינם</div>
+        <p class="step-desc">צרו חשבון חינם באינטרנט תוך דקות. תהליך אימות מהיר, מאושר תוך 24 שעות.</p>
+      </div>
+      <div class="process-step reveal rd2">
+        <div class="step-num">2</div>
+        <div class="step-title">נעלו את השער</div>
+        <p class="step-desc">קבלו הצעת מחיר בזמן אמת ונעלו את השער שלכם. בדקו את כל העמלות מראש לפני האישור — ללא הפתעות.</p>
+      </div>
+      <div class="process-step reveal rd3">
+        <div class="step-num">3</div>
+        <div class="step-title">העבירו כספים</div>
+        <p class="step-desc">שלחו כסף ועקבו אחריו בזמן אמת. השקלים מגיעים לחשבון הישראלי תוך 1-2 ימי עסקים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">סיפורי לקוחות</div>
+      <h2 class="s-title">אלפים סומכים עלינו</h2>
+      <p class="s-sub">אל תסמכו על המילה שלנו — הנה מה שהלקוחות שלנו אומרים</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal rd1">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">I've used IsraTransfer for over eight years — excellent customer care and always get me better rates than the bank. Wouldn't use anyone else.</p>
+        <div class="testi-author"><div class="testi-av">SM</div><div><div class="testi-name">Spencer Morris</div><div class="testi-role">לקוח מאז 2016</div></div></div>
+      </div>
+      <div class="testi-card reveal rd2">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">The customer service support is excellent, and financial transfers through their website are very efficient. Highly recommended.</p>
+        <div class="testi-author"><div class="testi-av">JH</div><div><div class="testi-name">Jonathan Harrison</div><div class="testi-role">לקוח מאומת</div></div></div>
+      </div>
+      <div class="testi-card reveal rd3">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">With my limited Hebrew, it was a pleasure to deal with IsraTransfer who guided me through the whole process of buying my apartment.</p>
+        <div class="testi-author"><div class="testi-av">DW</div><div><div class="testi-name">Deborah Weissman</div><div class="testi-role">רוכשת נדל״ן, תל אביב</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq" aria-label="שאלות נפוצות">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">יש שאלות?</div>
+      <h2 class="s-title">שאלות נפוצות</h2>
+      <p class="s-sub">כל מה שצריך לדעת על העברת כסף לישראל וממנה.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal rd1">
+        <button class="faq-q" aria-expanded="false">
+          כמה זמן לוקחת העברה לישראל או ממנה?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">רוב ההעברות מושלמות תוך 1-2 ימי עסקים. ברגע שאתם נועלים את השער ושולחים לנו את הכספים, אנחנו מטפלים בהכל. עיבוד באותו יום זמין להעברות שמתקבלות לפני שעת הסגירה היומית שלנו.</div></div>
+      </div>
+      <div class="faq-item reveal rd2">
+        <button class="faq-q" aria-expanded="false">
+          באילו מטבעות אפשר להעביר לישראל או ממנה?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">אנחנו מטפלים בכל המטבעות העיקריים המשויכים לשקל הישראלי (ILS) — כולל USD, GBP, EUR, CAD, AUD, CHF ועוד. בין אם אתם שולחים כסף לישראל או מחזירים כספים לחו״ל, אנחנו כאן בשבילכם.</div></div>
+      </div>
+      <div class="faq-item reveal rd3">
+        <button class="faq-q" aria-expanded="false">
+          איך שערי החליפין שלכם בהשוואה לבנקים?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">הלקוחות שלנו חוסכים בדרך כלל 1-3% בהשוואה לבנקים הגדולים. אנחנו עובדים מהשער הבין-בנקאי הסיטונאי וחושפים את המרווח שלנו מראש — ללא עמלות נסתרות, ללא הפתעות. בהעברה של 100,000$ זה חיסכון של 1,000-3,000$.</div></div>
+      </div>
+      <div class="faq-item reveal rd4">
+        <button class="faq-q" aria-expanded="false">
+          האם אפשר להעביר כסף מישראל?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">בהחלט. אנחנו מתמחים בהעברות גם לישראל וגם מישראל. בין אם אתם מעבירים כספי פנסיה, משלמים לספקים בחו״ל או שולחים כסף למשפחה בחו״ל, הצוות שלנו מטפל בכל התהליך כולל כל התיעוד הנדרש של בנק ישראל.</div></div>
+      </div>
+      <div class="faq-item reveal rd5">
+        <button class="faq-q" aria-expanded="false">
+          האם IsraTransfer מורשה ומפוקח?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">כן. IsraTransfer מורשה במלואו על ידי רשות שוק ההון, ביטוח וחיסכון בישראל (רישיון #57488). אנחנו פועלים תחת דרישות מחמירות למניעת הלבנת הון ולהכרת הלקוח, והכספים שלכם תמיד מוגנים.</div></div>
+      </div>
+      <div class="faq-item reveal rd6">
+        <button class="faq-q" aria-expanded="false">
+          איך פותחים חשבון?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">פתיחת חשבון היא חינמית ולוקחת רק כמה דקות באינטרנט. נאמת את הזהות שלכם (בדיקות KYC סטנדרטיות), שבדרך כלל מאושרות תוך 24 שעות. לאחר האישור, תוכלו לנעול שערים ולהעביר מיד דרך הפורטל המקוון או האפליקציה הסלולרית שלנו.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          אילו מסמכים נדרשים?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">לרוב ההעברות האישיות, תעודת זהות בתוקף והצהרת מקור כספים מספיקים. לעסקאות גדולות או מסחריות, ייתכן שיידרשו מסמכים נוספים — מנהל החשבון הייעודי שלכם ילווה אתכם בדיוק במה שנדרש למצבכם.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          האם אתם מציעים חוזים עתידיים או התראות שער?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">כן לשניהם. חוזים עתידיים מאפשרים לכם לנעול את השער של היום להעברה עתידית — אידיאלי לרכישות נדל״ן או תשלומים קבועים הדורשים וודאות. התראות שער מודיעות לכם ברגע שהשוק מגיע ליעד שלכם, כך שלעולם לא תפספסו את הרגע הנכון להעביר.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <h2 class="cta-h2">מוכנים <span class="grad">לחסוך אלפים</span>?</h2>
+    <p class="cta-p">הצטרפו ליותר מ-15,000 לקוחות מרוצים שסומכים על IsraTransfer לשערים טובים יותר, שירות טוב יותר ושקט נפשי מוחלט.</p>
+    <div class="cta-btns">
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">פתיחת חשבון חינם</a>
+      <a href="https://www.isratransfer.com/contact" class="btn-cta-outline">דברו עם מומחה</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <a href="#" class="footer-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+      <p class="footer-tagline">מומחי חליפין מאז 2008. שערים טובים יותר מהבנקים, ללא עמלות נסתרות, שירות ברמה גבוהה להעברות לישראל וממנה.</p>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <a href="mailto:info@isratransfer.com">info@isratransfer.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.73-1.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <a href="/contact">צרו קשר</a>
+      </div>
+      <div class="footer-licence-badge">
+        <p>🏛 מורשה ומפוקח<br/><strong>רישיון מס׳ 57488</strong><br/>רשות שוק ההון, ביטוח וחיסכון</p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>רכישת נדל״ן</h4>
+      <ul>
+        <li><a href="/buying-property-in-israel">רכישת נדל״ן בישראל</a></li>
+        <li><a href="/realestateinisrael">נדל״ן בישראל</a></li>
+        <li><a href="/citiesinisrael">גלו את ערי ישראל</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>פרטי</h4>
+      <ul>
+        <li><a href="/transfer-money-israel">העברות כספים</a></li>
+        <li><a href="/makingaliyah">עלייה לישראל</a></li>
+        <li><a href="/money-transfer-app">גישה מקוונת</a></li>
+        <li><a href="#faq">שאלות נפוצות</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>חברה</h4>
+      <ul>
+        <li><a href="/about">אודות IsraTransfer</a></li>
+        <li><a href="/team">הכירו את הצוות</a></li>
+        <li><a href="/license">הרישיון שלנו</a></li>
+        <li><a href="/csr">אחריות חברתית</a></li>
+        <li><a href="/blog">בלוג</a></li>
+        <li><a href="/careers">קריירה</a></li>
+        <li><a href="/contact">צרו קשר</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-bottom-left">
+        <span class="footer-bottom-copy">© 2025 IsraTransfer Ltd. כל הזכויות שמורות.</span>
+        <span class="footer-regulated">מפוקח על ידי <span>רשות שוק ההון, ביטוח וחיסכון</span> · רישיון 57488</span>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#">מדיניות פרטיות</a>
+        <a href="#">תנאי שימוש</a>
+        <a href="#">מדיניות עוגיות</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ──
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('mobile-drawer');
+  var drawerLinks = drawer.querySelectorAll('a');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'סגירת תפריט');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'פתיחת תפריט');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  drawerLinks.forEach(function(link) {
+    link.addEventListener('click', function() { closeMenu(); });
+  });
+  document.addEventListener('click', function(e) {
+    if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeMenu();
+  });
+
+  // ── Language dropdown ──
+  var langDropdown = document.getElementById('lang-dropdown');
+  var langTrigger = document.getElementById('lang-trigger');
+  if (langDropdown && langTrigger) {
+    langTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = langDropdown.classList.toggle('open');
+      langTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function(e) {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ── Scroll reveal ──
+  var obs = new IntersectionObserver(function(e) {
+    e.forEach(function(x) { if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // ── Counters ──
+  function countUp(el, target, suffix) {
+    suffix = suffix || '';
+    var s = null;
+    (function step(ts) {
+      if (!s) s = ts;
+      var p = Math.min((ts - s) / 1800, 1), ease = 1 - Math.pow(1 - p, 3);
+      var v = Math.floor(ease * target);
+      el.textContent = (v >= 1000 ? v.toLocaleString() : v) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    })(performance.now());
+  }
+  var co = new IntersectionObserver(function(e) {
+    e.forEach(function(x) {
+      if (x.isIntersecting) {
+        var el = x.target, c = +el.dataset.count;
+        countUp(el, c, '+');
+        co.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(function(el) { co.observe(el); });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+</body>
+</html>
