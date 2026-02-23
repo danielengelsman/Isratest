@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Acheter un Bien Immobilier en Israël | IsraTransfer — Économisez sur le Change</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #003CAA;
+      --teal:       #00A0FF;
+      --navy:       #0A1628;
+      --soft-white: #FAFBFC;
+      --light-bg:   #F0F4F8;
+      --text-dark:  #0A1628;
+      --text-gray:  #5A6B7D;
+      --green:      #00C853;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-dark);
+      background: var(--soft-white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(29,61,143,.1);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 1.4rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; list-style: none; }
+    .nav-links a {
+      color: var(--text-dark); text-decoration: none;
+      font-weight: 600; font-size: .88rem;
+      transition: color .3s; position: relative;
+      white-space: nowrap;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+      background: var(--blue); transition: width .3s; border-radius: 2px;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-active { color: var(--blue) !important; }
+    .nav-active::after { width: 100% !important; }
+    .btn-nav {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; padding: .75rem 1.6rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .88rem;
+      transition: transform .3s, box-shadow .3s; box-shadow: 0 4px 15px rgba(29,61,143,.3);
+      white-space: nowrap;
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(29,61,143,.4); }
+    .btn-nav:active { transform: translateY(0); }
+    .btn-nav:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-login {
+      border: 2px solid var(--blue); color: var(--blue);
+      padding: .65rem 1.4rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .88rem;
+      transition: background .3s, color .3s;
+      white-space: nowrap;
+    }
+    .btn-login:hover { background: var(--blue); color: #fff; }
+    .btn-login:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* ── LANGUAGE DROPDOWN ── */
+    .lang-dropdown { position: relative; }
+    .lang-trigger {
+      display: flex; align-items: center; gap: 0.42rem;
+      background: none; border: 1.5px solid rgba(0,60,170,0.2);
+      border-radius: 8px; padding: 0.5rem 0.8rem;
+      cursor: pointer; font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem; font-weight: 700; color: var(--text-gray);
+      transition: background .18s, border-color .18s, color .18s;
+      white-space: nowrap;
+    }
+    .lang-trigger:hover { background: rgba(0,60,170,0.05); border-color: var(--blue); color: var(--blue); }
+    .lang-trigger:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 8px; }
+    .lang-flag { font-size: 1rem; line-height: 1; }
+    .lang-chevron { transition: transform .22s cubic-bezier(0.4,0,0.2,1); }
+    .lang-dropdown.open .lang-chevron { transform: rotate(180deg); }
+    .lang-menu {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: #fff;
+      border: 1px solid rgba(0,60,170,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,60,170,0.08), 0 16px 40px rgba(0,60,170,0.1);
+      min-width: 168px; z-index: 200; overflow: hidden;
+      opacity: 0; visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity .2s, visibility .2s, transform .22s cubic-bezier(0.4,0,0.2,1);
+    }
+    .lang-dropdown.open .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .lang-option {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.72rem 1rem;
+      font-size: 0.84rem; font-weight: 600; color: var(--text-gray);
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+    .lang-option + .lang-option { border-top: 1px solid rgba(0,60,170,0.06); }
+    .lang-option:hover { background: var(--light-bg); color: var(--blue); }
+    .lang-option.active { background: rgba(0,60,170,0.04); color: var(--blue); font-weight: 700; }
+    .lang-option-flag { font-size: 1.1rem; }
+    .lang-option-label { flex: 1; }
+    .lang-option-check { opacity: 0; flex-shrink: 0; }
+    .lang-option.active .lang-option-check { opacity: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 88px; min-height: 80vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -30%; right: -15%;
+      width: 900px; height: 900px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,168,204,.14) 0%, transparent 70%);
+      animation: bgPulse 8s ease-in-out infinite;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -20%; left: -10%;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,61,143,.1) 0%, transparent 70%);
+      animation: bgPulse 10s ease-in-out infinite reverse;
+    }
+    @keyframes bgPulse {
+      0%,100% { transform: scale(1) translate(0,0); }
+      50% { transform: scale(1.1) translate(20px,-20px); }
+    }
+
+    .hero-inner {
+      max-width: 1400px; margin: 0 auto; padding: 4rem 3rem;
+      display: grid; grid-template-columns: 1fr; gap: 0;
+      align-items: center; position: relative; z-index: 1; width: 100%;
+    }
+    .hero-inner--single {
+      max-width: 900px; text-align: center;
+    }
+    .hero-inner--single .hero-cta { justify-content: center; }
+    .hero-inner--single .hero-trust { justify-content: center; }
+
+    .hero-h1 {
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 900; line-height: 1.08;
+      letter-spacing: -2px; margin-bottom: 1.8rem;
+    }
+    .grad { background: linear-gradient(135deg, var(--blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .accent { color: var(--teal); }
+
+    .hero-sub {
+      font-size: 1.2rem; color: var(--text-gray);
+      line-height: 1.65; margin-bottom: 2.8rem; font-weight: 400;
+    }
+    .hero-cta { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; padding: 1.2rem 2.8rem; border-radius: 50px;
+      text-decoration: none; font-weight: 800; font-size: 1.05rem;
+      transition: transform .3s, box-shadow .3s; box-shadow: 0 8px 30px rgba(29,61,143,.35);
+    }
+    .btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(29,61,143,.45); }
+    .btn-hero-primary:active { transform: translateY(-1px); }
+    .btn-hero-primary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-hero-ghost {
+      color: var(--blue); text-decoration: none;
+      font-weight: 700; font-size: 1.05rem;
+      display: flex; align-items: center; gap: .5rem; transition: gap .3s;
+    }
+    .btn-hero-ghost:hover { gap: 1rem; }
+    .btn-hero-ghost:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+
+    .hero-trust {
+      margin-top: 2rem; display: flex; align-items: center; gap: 1.5rem;
+      font-size: .82rem; color: var(--text-gray); font-weight: 500;
+    }
+    .trust-item { display: flex; align-items: center; gap: .4rem; }
+    .trust-item svg { flex-shrink: 0; }
+
+    /* ── SECTION SHARED ── */
+    .section-wrap { max-width: 1400px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 5rem; }
+    .s-eyebrow { font-size: .85rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; }
+    .s-title { font-size: clamp(2rem,4vw,3.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 1.2rem; }
+    .s-sub { font-size: 1.15rem; color: var(--text-gray); max-width: 650px; margin: 0 auto; line-height: 1.65; font-weight: 400; }
+
+    /* ── FEATURES ── */
+    .features { padding: 8rem 3rem; background: #fff; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; }
+    .feat-card {
+      background: linear-gradient(135deg, rgba(29,61,143,.03), rgba(0,168,204,.03));
+      padding: 2.8rem; border-radius: 28px;
+      border: 2px solid transparent;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s, box-shadow .4s;
+      position: relative; overflow: hidden;
+    }
+    .feat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(29,61,143,.06), rgba(0,168,204,.06));
+      opacity: 0; transition: opacity .4s; border-radius: 28px;
+    }
+    .feat-card:hover { transform: translateY(-10px); border-color: rgba(29,61,143,.3); box-shadow: 0 20px 60px rgba(29,61,143,.13); }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-card > * { position: relative; z-index: 1; }
+
+    .feat-icon-wrap {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 20px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 8px 24px rgba(29,61,143,.25);
+    }
+    .feat-title { font-size: 1.4rem; font-weight: 800; margin-bottom: .8rem; }
+    .feat-desc { color: var(--text-gray); line-height: 1.7; font-size: 1rem; font-weight: 400; }
+
+    /* ── PROCESS ── */
+    .process { padding: 8rem 3rem; background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%); }
+    .process-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 2rem; margin-top: 5rem; position: relative; }
+    .process-grid::before {
+      content: ''; position: absolute; top: 48px; left: calc(10% + 20px); right: calc(10% + 20px);
+      height: 2px; background: linear-gradient(90deg, var(--blue), var(--teal));
+      opacity: .25; z-index: 0;
+    }
+    .process-step { text-align: center; position: relative; z-index: 1; }
+    .step-num {
+      width: 80px; height: 80px; margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 900; color: #fff;
+      box-shadow: 0 10px 30px rgba(29,61,143,.3);
+    }
+    .step-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .6rem; }
+    .step-desc { color: var(--text-gray); font-size: .92rem; line-height: 1.7; font-weight: 400; }
+
+    /* ── INFO CARDS ── */
+    .info-section { padding: 8rem 3rem; background: #fff; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .info-card {
+      background: #fff;
+      border: 1.5px solid rgba(0, 60, 170, 0.08);
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s, box-shadow .4s;
+    }
+    .info-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 60, 170, 0.2);
+      box-shadow: 0 12px 40px rgba(0, 60, 170, 0.1);
+    }
+    .info-card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(0,60,170,.08), rgba(0,160,255,.08));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .info-card-label {
+      font-size: .75rem; font-weight: 800; color: var(--blue);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: .5rem;
+    }
+    .info-card-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
+    .info-card-desc { color: var(--text-gray); font-size: .95rem; line-height: 1.7; }
+
+    /* ── LOCATIONS ── */
+    .locations { padding: 8rem 3rem; background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%); }
+    .locations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .location-card {
+      border-radius: 24px; overflow: hidden; position: relative;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s;
+    }
+    .location-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 60, 170, 0.15);
+    }
+    .location-img {
+      width: 100%; height: 240px; object-fit: cover; display: block;
+      filter: saturate(1.1);
+    }
+    .location-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10, 22, 40, 0.8) 0%, rgba(10, 22, 40, 0.1) 50%, transparent 100%);
+    }
+    .location-color-layer {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,60,170,.15), rgba(0,160,255,.1));
+      mix-blend-mode: multiply;
+    }
+    .location-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1.8rem; color: #fff;
+    }
+    .location-name { font-size: 1.4rem; font-weight: 800; margin-bottom: .3rem; }
+    .location-desc { font-size: .85rem; opacity: .85; line-height: 1.5; }
+
+    /* ── SAVINGS HIGHLIGHT ── */
+    .savings-highlight {
+      padding: 6rem 3rem;
+      background: linear-gradient(135deg, var(--navy), #0D2847);
+      color: #fff; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .savings-highlight::before {
+      content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 160, 255, 0.12) 0%, transparent 65%);
+    }
+    .savings-highlight::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .savings-highlight-inner {
+      max-width: 800px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .savings-big-number {
+      font-size: clamp(3rem, 6vw, 5rem); font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 1rem; letter-spacing: -2px;
+    }
+    .savings-context {
+      font-size: 1.25rem; opacity: .85; line-height: 1.6;
+      max-width: 600px; margin: 0 auto 2.5rem;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testi { padding: 8rem 3rem; background: #fff; }
+    .testi-card {
+      background: linear-gradient(135deg, rgba(29,61,143,.03), rgba(0,168,204,.03));
+      border: 2px solid rgba(29,61,143,.08);
+      border-radius: 28px; padding: 2.5rem;
+      transition: transform .4s, box-shadow .4s, border-color .4s; position: relative; overflow: hidden;
+    }
+    .testi-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(29,61,143,.12); border-color: rgba(29,61,143,.25); }
+    .testi-stars { color: var(--teal); font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 1.2rem; }
+    .testi-quote-mark {
+      font-size: 6rem; font-weight: 900; line-height: .8;
+      color: rgba(29,61,143,.07); margin-bottom: -.5rem;
+      font-family: Georgia, serif;
+    }
+    .testi-text { font-size: 1.05rem; color: var(--text-gray); line-height: 1.72; margin-bottom: 1.8rem; font-weight: 400; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 1rem; }
+    .testi-av {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 800; font-size: .95rem; }
+    .testi-role { font-size: .8rem; color: var(--text-gray); margin-top: 2px; }
+
+    /* ── FAQ ── */
+    .faq-section { padding: 8rem 3rem; background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%); }
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item {
+      background: #fff;
+      border: 1.5px solid rgba(0,60,170,0.08);
+      border-radius: 16px; overflow: hidden;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .faq-item.open {
+      border-color: rgba(0,60,170,0.22);
+      box-shadow: 0 4px 20px rgba(0,60,170,0.08);
+    }
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+      padding: 1.25rem 1.6rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.96rem; font-weight: 700; color: var(--text-dark);
+      transition: color .2s;
+    }
+    .faq-q:hover { color: var(--blue); }
+    .faq-q:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; border-radius: 14px; }
+    .faq-icon {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--light-bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .25s, transform .35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-item.open .faq-icon {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      transform: rotate(45deg);
+    }
+    .faq-item.open .faq-icon svg { stroke: #fff; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(0.4,0,0.2,1); }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner {
+      padding: 1rem 1.6rem 1.4rem;
+      font-size: 0.92rem; color: var(--text-gray); line-height: 1.78; font-weight: 400;
+      border-top: 1px solid rgba(0,60,170,0.07);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 8rem 3rem;
+      background: linear-gradient(135deg, var(--navy), #0D2847);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+      width: 1000px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,168,204,.12) 0%, transparent 65%);
+    }
+    .cta-section::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .cta-h2 { font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 1.5rem; }
+    .cta-h2 .grad { background: linear-gradient(135deg, var(--teal), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-p { font-size: 1.3rem; opacity: .8; margin-bottom: 3rem; font-weight: 400; line-height: 1.6; }
+    .cta-btns { display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-primary {
+      background: #fff; color: var(--blue);
+      padding: 1.4rem 3.2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 800; font-size: 1.1rem;
+      transition: transform .3s, box-shadow .3s, background .3s; box-shadow: 0 10px 40px rgba(255,255,255,.2);
+    }
+    .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(255,255,255,.3); background: #f0f4ff; }
+    .btn-cta-primary:active { transform: translateY(-1px); }
+    .btn-cta-primary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-cta-outline {
+      background: transparent; color: #fff;
+      border: 2.5px solid rgba(255,255,255,.5); padding: 1.4rem 3.2rem;
+      border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem;
+      transition: background .3s, border-color .3s, transform .3s;
+    }
+    .btn-cta-outline:hover { background: rgba(255,255,255,.1); border-color: #fff; transform: translateY(-3px); }
+    .btn-cta-outline:active { transform: translateY(-1px); }
+    .btn-cta-outline:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--soft-white);
+      border-top: 1px solid rgba(0,60,170,.1);
+    }
+    footer::before {
+      content: ''; display: block; height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+    .footer-main {
+      max-width: 1400px; margin: 0 auto;
+      padding: 4rem 3rem 3rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem;
+    }
+    .footer-logo { margin-bottom: 1.2rem; display: block; }
+    .footer-logo img { height: 38px; }
+    .footer-tagline { color: var(--text-gray); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 280px; }
+    .footer-contact-item { display: flex; align-items: center; gap: .8rem; margin-bottom: .8rem; }
+    .footer-contact-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-contact-icon svg { width:15px; height:15px; fill:none; stroke:#fff; stroke-width:2; }
+    .footer-contact-item a, .footer-contact-item span { font-size: .88rem; color: var(--text-gray); text-decoration: none; transition: color .2s; }
+    .footer-contact-item a:hover { color: var(--blue); }
+    .footer-licence-badge { margin-top: 1.5rem; padding: .75rem 1rem; background: rgba(0,60,170,.06); border: 1px solid rgba(0,60,170,.15); border-radius: 10px; }
+    .footer-licence-badge p { font-size: .78rem; color: var(--text-gray); line-height: 1.5; margin: 0; }
+    .footer-licence-badge strong { color: var(--blue); }
+    .footer-col h4 {
+      font-size: .88rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--text-dark); margin-bottom: 1.2rem; position: relative; padding-bottom: .6rem;
+    }
+    .footer-col h4::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 24px; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--teal)); border-radius: 2px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .65rem; }
+    .footer-col ul li a { font-size: .9rem; color: var(--text-gray); text-decoration: none; transition: color .2s, padding-left .2s; display: inline-block; }
+    .footer-col ul li a:hover { color: var(--blue); padding-left: 4px; }
+    .footer-bottom { background: #F0F4F8; border-top: 1px solid rgba(0,60,170,.08); }
+    .footer-bottom-inner {
+      max-width: 1400px; margin: 0 auto; padding: 1.2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom-left { display: flex; flex-direction: column; gap: .25rem; }
+    .footer-bottom-copy { font-size: .82rem; color: var(--text-gray); }
+    .footer-regulated { font-size: .78rem; color: var(--text-gray); }
+    .footer-regulated span { color: var(--blue); font-weight: 600; }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: .82rem; color: var(--text-gray); text-decoration: none; transition: color .2s; }
+    .footer-bottom-links a:hover { color: var(--blue); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp .8s cubic-bezier(.4,0,.2,1) forwards; }
+    .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; } .d3 { animation-delay: .4s; }
+    .d4 { animation-delay: .55s; } .d5 { animation-delay: .7s; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s cubic-bezier(0.4,0,0.2,1), transform .65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: .05s; } .rd2 { transition-delay: .14s; } .rd3 { transition-delay: .22s; }
+    .rd4 { transition-delay: .3s; } .rd5 { transition-delay: .38s; } .rd6 { transition-delay: .46s; }
+
+    /* ── MOBILE MENU ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none;
+      flex-shrink: 0; z-index: 200;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-dark); border-radius: 2px;
+      transition: transform .28s cubic-bezier(0.4,0,0.2,1), opacity .2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger:focus-visible { outline: 2px solid var(--teal); border-radius: 6px; outline-offset: 2px; }
+
+    .mobile-drawer {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      z-index: 90; padding-top: 68px;
+      transform: translateY(-105%);
+      transition: transform .38s cubic-bezier(0.4,0,0.2,1);
+      border-bottom: 1px solid rgba(0,60,170,0.1);
+      box-shadow: 0 16px 56px rgba(0,60,170,0.12);
+    }
+    .mobile-drawer.open { transform: translateY(0); }
+    .mobile-drawer-inner { padding: 0.5rem 1.25rem 2rem; }
+    .mobile-nav-list { list-style: none; margin-bottom: 1.4rem; }
+    .mobile-nav-list li a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.95rem 0; font-size: 1rem; font-weight: 700; color: var(--text-dark);
+      text-decoration: none; border-bottom: 1px solid rgba(0,60,170,0.07);
+      transition: color .2s;
+    }
+    .mobile-nav-list li a:hover { color: var(--blue); }
+    .mobile-nav-list li a:focus-visible { outline: 2px solid var(--teal); border-radius: 4px; }
+    .mobile-nav-chevron { opacity: 0.3; }
+    .mobile-cta-group { display: flex; flex-direction: column; gap: 0.7rem; }
+    .mobile-cta-group a {
+      text-align: center; padding: 0.85rem; border-radius: 12px;
+      font-size: 0.93rem; display: block; text-decoration: none; font-weight: 700;
+    }
+    .mobile-lang-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .mobile-lang-opt {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 0.55rem 0.5rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 600; color: var(--text-gray);
+      text-decoration: none; border: 1.5px solid rgba(0,60,170,0.12);
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .mobile-lang-opt:hover { background: var(--light-bg); border-color: rgba(0,60,170,0.25); color: var(--blue); }
+    .mobile-lang-opt.active { background: rgba(0,60,170,0.06); border-color: var(--blue); color: var(--blue); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav-inner { padding: 1.1rem 2rem; }
+      .hero-inner { padding: 4rem 2rem; }
+      .feat-grid { grid-template-columns: repeat(2,1fr); gap: 1.4rem; }
+      .process-grid { grid-template-columns: repeat(3,1fr); }
+      .info-grid { grid-template-columns: repeat(2,1fr); }
+      .locations-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero { margin-top: 68px; min-height: auto; padding: 2rem 0; }
+      .hero-inner { padding: 2rem 1.25rem; }
+      .hero-inner--single { text-align: left; }
+      .hero-inner--single .hero-cta { justify-content: flex-start; }
+      .hero-inner--single .hero-trust { justify-content: flex-start; }
+      .hero-h1 { font-size: 2.2rem; letter-spacing: -1px; }
+      .hero-sub { font-size: 1rem; }
+      .hero-trust { flex-direction: column; align-items: flex-start; gap: .8rem; }
+      .features, .testi, .faq-section, .process, .info-section, .locations { padding: 4rem 1.25rem; }
+      .section-head { margin-bottom: 3rem; }
+      .feat-grid, .process-grid, .info-grid, .locations-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .process-grid::before { display: none; }
+      .feat-card { padding: 2rem; }
+      .step-num { width: 72px; height: 72px; font-size: 1.8rem; }
+      .cta-section { padding: 4rem 1.25rem; }
+      .cta-h2 { font-size: 2rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .faq-q { padding: 1.05rem 1.25rem; font-size: 0.9rem; }
+      .faq-a-inner { padding: 0.9rem 1.25rem 1.2rem; }
+      .savings-highlight { padding: 3.5rem 1.25rem; }
+    }
+    @media (max-width: 900px) {
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-bottom-inner { flex-direction: column; gap: .8rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .footer-main { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+    }
+  </style>
+
+  <!-- SEO -->
+  <meta name="description" content="Achetez un bien immobilier en Isra&euml;l et &eacute;conomisez des milliers sur le change de devises. IsraTransfer offre de meilleurs taux que les banques, des contrats &agrave; terme et des transferts directs vers le compte de votre avocat. Agr&eacute;&eacute; #57488."/>
+  <meta name="keywords" content="acheter propri&eacute;t&eacute; Isra&euml;l, achat immobilier Isra&euml;l, immobilier Isra&euml;l, change devises achat immobilier Isra&euml;l, IsraTransfer, contrat &agrave; terme Isra&euml;l"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="IsraTransfer"/>
+  <link rel="canonical" href="https://www.isratransfer.com/buying-property-fr.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="alternate" hreflang="en" href="https://www.isratransfer.com/buying-property.html"/>
+  <link rel="alternate" hreflang="fr" href="https://www.isratransfer.com/buying-property-fr.html"/>
+  <link rel="alternate" hreflang="he" href="https://www.isratransfer.com/buying-property-he.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://www.isratransfer.com/buying-property.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.isratransfer.com/buying-property-fr.html"/>
+  <meta property="og:title" content="Acheter un Bien Immobilier en Isra&euml;l | IsraTransfer"/>
+  <meta property="og:description" content="&Eacute;conomisez des milliers sur votre achat immobilier en Isra&euml;l. De meilleurs taux que les banques, contrats &agrave; terme, transferts directs vers le compte de votre avocat. Agr&eacute;&eacute; et de confiance depuis 2008."/>
+  <meta property="og:site_name" content="IsraTransfer"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="fr.html" class="nav-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+    <ul class="nav-links">
+      <li><a href="buying-property-fr.html" class="nav-active">Achat Immobilier</a></li>
+      <li><a href="#">Particuliers</a></li>
+      <li><a href="#">&Agrave; Propos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button class="lang-trigger" id="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Choisir la langue">
+            <span class="lang-flag">&#x1F1EB;&#x1F1F7;</span>
+            <span>FR</span>
+            <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="lang-menu" role="menu">
+            <a href="buying-property.html" class="lang-option" role="menuitem" hreflang="en">
+              <span class="lang-option-flag">&#x1F1EC;&#x1F1E7;</span>
+              <span class="lang-option-label">English</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+            <a href="buying-property-fr.html" class="lang-option active" role="menuitem" hreflang="fr">
+              <span class="lang-option-flag">&#x1F1EB;&#x1F1F7;</span>
+              <span class="lang-option-label">Fran&ccedil;ais</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+            <a href="buying-property-he.html" class="lang-option" role="menuitem" hreflang="he">
+              <span class="lang-option-flag">&#x1F1EE;&#x1F1F1;</span>
+              <span class="lang-option-label">&#1506;&#1489;&#1512;&#1497;&#1514;</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li><a href="https://isratransfer.my.site.com/it/login" class="btn-login">Connexion Client</a></li>
+      <li><a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-nav">Ouvrir un Compte &rarr;</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+  <div class="mobile-drawer-inner">
+    <div class="mobile-lang-row" role="navigation" aria-label="Choisir la langue">
+      <a href="buying-property.html" class="mobile-lang-opt" hreflang="en">&#x1F1EC;&#x1F1E7; English</a>
+      <a href="buying-property-fr.html" class="mobile-lang-opt active" hreflang="fr">&#x1F1EB;&#x1F1F7; Fran&ccedil;ais</a>
+      <a href="buying-property-he.html" class="mobile-lang-opt" hreflang="he">&#x1F1EE;&#x1F1F1; &#1506;&#1489;&#1512;&#1497;&#1514;</a>
+    </div>
+    <ul class="mobile-nav-list" role="list">
+      <li><a href="buying-property-fr.html" style="color: var(--blue);">Achat Immobilier <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#">Particuliers <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#">&Agrave; Propos <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#faq">FAQ <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+    </ul>
+    <div class="mobile-cta-group">
+      <a href="https://isratransfer.my.site.com/it/login" style="border: 2px solid var(--blue); color: var(--blue);">Connexion Client</a>
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" style="background: linear-gradient(135deg, var(--blue), var(--teal)); color: #fff;">Ouvrir un Compte &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner hero-inner--single">
+    <div class="hero-text">
+      <h1 class="hero-h1 fade-up d1">
+        Acheter un Bien en<br>
+        <span class="grad">Isra&euml;l</span>&nbsp;? &Eacute;conomisez des<br>
+        Milliers sur le <span class="accent">Change</span>
+      </h1>
+      <p class="hero-sub fade-up d2">IsraTransfer est sp&eacute;cialis&eacute; dans les transferts pour l'achat immobilier. Bloquez votre taux de change, &eacute;conomisez 1&ndash;3&nbsp;% par rapport aux banques, et transf&eacute;rez directement sur le compte s&eacute;questre de votre avocat. La confiance de plus de 2&nbsp;500 acheteurs immobiliers depuis 2008.</p>
+      <div class="hero-cta fade-up d3">
+        <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-hero-primary">Ouvrir un Compte Gratuit</a>
+        <a href="https://www.isratransfer.com/contact" class="btn-hero-ghost">Parler &agrave; un Expert Immobilier &rarr;</a>
+      </div>
+      <div class="hero-trust fade-up d4">
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Agr&eacute;&eacute; #57488
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          2&nbsp;500+ Acheteurs Immobiliers
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Depuis 2008
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVANTAGES CL&Eacute;S -->
+<section class="features">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">Pourquoi IsraTransfer pour l'Immobilier</div>
+      <h2 class="s-title">&Eacute;conomisez des Milliers sur<br>Votre Achat Immobilier</h2>
+      <p class="s-sub">Tout ce dont vous avez besoin pour un transfert immobilier fluide et &eacute;conomique vers Isra&euml;l.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal rd1">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="feat-title">Meilleurs Taux de Change</div>
+        <p class="feat-desc">&Eacute;conomisez 1&ndash;3&nbsp;% par rapport aux banques sur chaque transfert. Sur un bien &agrave; 500&nbsp;000&nbsp;$, c'est 5&nbsp;000&ndash;15&nbsp;000&nbsp;$ de plus dans votre poche.</p>
+      </div>
+      <div class="feat-card reveal rd2">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="feat-title">Contrats &agrave; Terme</div>
+        <p class="feat-desc">Bloquez le taux de change du jour pour un paiement futur. Id&eacute;al pour les achats immobiliers &eacute;chelonn&eacute;s o&ugrave; vous avez besoin de certitude sur le prix.</p>
+      </div>
+      <div class="feat-card reveal rd3">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="feat-title">Directement chez l'Avocat</div>
+        <p class="feat-desc">Les fonds sont transf&eacute;r&eacute;s directement sur le compte s&eacute;questre de votre avocat. Nous travaillons r&eacute;guli&egrave;rement avec des avocats et promoteurs isra&eacute;liens.</p>
+      </div>
+      <div class="feat-card reveal rd1">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="feat-title">Gestionnaires D&eacute;di&eacute;s</div>
+        <p class="feat-desc">Des gestionnaires de compte personnels qui comprennent l'immobilier isra&eacute;lien. Des professionnels francophones qui connaissent le processus.</p>
+      </div>
+      <div class="feat-card reveal rd2">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="feat-title">Aucuns Frais Cach&eacute;s</div>
+        <p class="feat-desc">Nous prenons une marge inf&eacute;rieure &agrave; celle des banques, et nous ne facturons jamais de frais suppl&eacute;mentaires ou cach&eacute;s. Transparence totale, toujours.</p>
+      </div>
+      <div class="feat-card reveal rd3">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="feat-title">Agr&eacute;&eacute; et R&eacute;glement&eacute;</div>
+        <p class="feat-desc">Enti&egrave;rement agr&eacute;&eacute; par l'Autorit&eacute; isra&eacute;lienne des March&eacute;s des Capitaux, Assurances et &Eacute;pargne (licence #57488). Votre argent est toujours prot&eacute;g&eacute;.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS D'ACHAT IMMOBILIER -->
+<section class="process">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">&Eacute;tape par &Eacute;tape</div>
+      <h2 class="s-title">Le Processus d'Achat Immobilier</h2>
+      <p class="s-sub">De la recherche de votre bien id&eacute;al &agrave; la remise des cl&eacute;s &mdash; nous g&eacute;rons le volet devises</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal rd1">
+        <div class="step-num">1</div>
+        <div class="step-title">Trouver et Signer</div>
+        <p class="step-desc">Trouvez votre bien et signez le contrat d'achat avec votre avocat isra&eacute;lien.</p>
+      </div>
+      <div class="process-step reveal rd2">
+        <div class="step-num">2</div>
+        <div class="step-title">Ouvrir un Compte</div>
+        <p class="step-desc">Cr&eacute;ez votre compte IsraTransfer gratuit. V&eacute;rifi&eacute; et approuv&eacute; sous 24 heures.</p>
+      </div>
+      <div class="process-step reveal rd3">
+        <div class="step-num">3</div>
+        <div class="step-title">Bloquer le Taux</div>
+        <p class="step-desc">Obtenez un devis en direct et bloquez votre taux de change. Contrats &agrave; terme disponibles pour les paiements futurs.</p>
+      </div>
+      <div class="process-step reveal rd4">
+        <div class="step-num">4</div>
+        <div class="step-title">Transf&eacute;rer les Fonds</div>
+        <p class="step-desc">Nous convertissons et transf&eacute;rons directement sur le compte s&eacute;questre de votre avocat. Suivi en temps r&eacute;el.</p>
+      </div>
+      <div class="process-step reveal rd5">
+        <div class="step-num">5</div>
+        <div class="step-title">Cl&eacute;s en Main</div>
+        <p class="step-desc">Les fonds arrivent en 1&ndash;2 jours ouvrables. La transaction est finalis&eacute;e et vous recevez les cl&eacute;s.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CE QU'IL FAUT SAVOIR -->
+<section class="info-section">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">Informations Importantes</div>
+      <h2 class="s-title">Ce Qu'il Faut Savoir</h2>
+      <p class="s-sub">Co&ucirc;ts et consid&eacute;rations cl&eacute;s lors de l'achat d'un bien en Isra&euml;l</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card reveal rd1">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="info-card-label">Taxe d'Achat</div>
+        <div class="info-card-title">Mas Rechisha</div>
+        <p class="info-card-desc">Un imp&ocirc;t progressif qui doit &ecirc;tre pay&eacute; dans les 60 jours suivant la signature du contrat. Les taux varient de 3,5&nbsp;% &agrave; 10&nbsp;% selon la valeur du bien et le statut de l'acheteur.</p>
+      </div>
+      <div class="info-card reveal rd2">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="info-card-label">Frais Juridiques</div>
+        <div class="info-card-title">Avocat et Notaire</div>
+        <p class="info-card-desc">Les frais juridiques repr&eacute;sentent g&eacute;n&eacute;ralement 0,5&ndash;1,5&nbsp;% du prix d'achat plus TVA. Votre avocat g&egrave;re les recherches de titre, la planification fiscale et le s&eacute;questre.</p>
+      </div>
+      <div class="info-card reveal rd3">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="info-card-label">Indexation IPC</div>
+        <div class="info-card-title">Madad &mdash; Indexation &agrave; l'Inflation</div>
+        <p class="info-card-desc">Les constructions neuves achet&eacute;es aupr&egrave;s d'un promoteur sont index&eacute;es sur l'indice des prix &agrave; la consommation (Madad). Si l'inflation augmente, vos paiements restants augmentent en cons&eacute;quence.</p>
+      </div>
+      <div class="info-card reveal rd4">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="info-card-label">Budget</div>
+        <div class="info-card-title">Co&ucirc;ts Suppl&eacute;mentaires Totaux</div>
+        <p class="info-card-desc">En r&egrave;gle g&eacute;n&eacute;rale, pr&eacute;voyez un budget suppl&eacute;mentaire de 10&ndash;15&nbsp;% au-dessus du prix d'achat pour les taxes, frais juridiques, commissions d'agent et autres frais associ&eacute;s.</p>
+      </div>
+      <div class="info-card reveal rd5">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="info-card-label">D&eacute;claration</div>
+        <div class="info-card-title">D&eacute;claration des Gros Transferts</div>
+        <p class="info-card-desc">Les transferts sup&eacute;rieurs &agrave; 50&nbsp;000&nbsp;$ USD ou 200&nbsp;000&nbsp;NIS doivent &ecirc;tre d&eacute;clar&eacute;s au Contr&ocirc;leur des Changes. Nous g&eacute;rons cette documentation pour vous.</p>
+      </div>
+      <div class="info-card reveal rd6">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="info-card-label">Avantage Olim</div>
+        <div class="info-card-title">R&eacute;duction Fiscale Aliyah</div>
+        <p class="info-card-desc">Vous faites votre Aliyah dans les 12&ndash;24 mois suivant l'achat&nbsp;? Vous pourriez b&eacute;n&eacute;ficier r&eacute;troactivement de taux de taxe d'achat r&eacute;duits (0,5&ndash;5&nbsp;%), pour une &eacute;conomie significative.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS POPULAIRES -->
+<section class="locations">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">Destinations Populaires</div>
+      <h2 class="s-title">O&ugrave; Nos Clients Ach&egrave;tent</h2>
+      <p class="s-sub">D&eacute;couvrez les villes les plus populaires d'Isra&euml;l pour l'investissement immobilier</p>
+    </div>
+    <div class="locations-grid">
+      <div class="location-card reveal rd1">
+        <img src="https://placehold.co/600x480/1a2e4a/1a2e4a" alt="J&eacute;rusalem" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">J&eacute;rusalem</div>
+          <div class="location-desc">La capitale d'Isra&euml;l. Une histoire riche, une culture vibrante et une forte demande immobili&egrave;re.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd2">
+        <img src="https://placehold.co/600x480/1a3a5c/1a3a5c" alt="Tel Aviv" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Tel Aviv</div>
+          <div class="location-desc">Le p&ocirc;le &eacute;conomique. Mode de vie m&eacute;diterran&eacute;en, sc&egrave;ne tech et immobilier haut de gamme.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd3">
+        <img src="https://placehold.co/600x480/1a4a6e/1a4a6e" alt="Netanya" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Netanya</div>
+          <div class="location-desc">Ville c&ocirc;ti&egrave;re tr&egrave;s pris&eacute;e des francophones et anglophones. Belles plages, march&eacute; en croissance.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd1">
+        <img src="https://placehold.co/600x480/1a3550/1a3550" alt="Ra'anana" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Ra'anana</div>
+          <div class="location-desc">Ville familiale avec d'excellentes &eacute;coles. Communaut&eacute; d'expatri&eacute;s florissante au centre d'Isra&euml;l.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd2">
+        <img src="https://placehold.co/600x480/1a2844/1a2844" alt="Modi'in" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Modi'in</div>
+          <div class="location-desc">Ville moderne planifi&eacute;e entre J&eacute;rusalem et Tel Aviv. Parfait pour les jeunes familles.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd3">
+        <img src="https://placehold.co/600x480/1a3048/1a3048" alt="Bet Shemesh" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Bet Shemesh</div>
+          <div class="location-desc">Ville en pleine croissance pr&egrave;s de J&eacute;rusalem. Options abordables avec un fort esprit communautaire.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISE EN AVANT DES &Eacute;CONOMIES -->
+<section class="savings-highlight">
+  <div class="savings-highlight-inner reveal">
+    <div class="s-eyebrow" style="color: rgba(255,255,255,.5);">Exemple d'&Eacute;conomies R&eacute;elles</div>
+    <div class="savings-big-number">5&nbsp;000&nbsp;$ &ndash; 15&nbsp;000&nbsp;$</div>
+    <p class="savings-context">C'est ce que vous pourriez &eacute;conomiser sur un achat immobilier de 500&nbsp;000&nbsp;$ compar&eacute; &agrave; votre banque. Les clients IsraTransfer &eacute;conomisent 1&ndash;3&nbsp;% sur chaque transfert.</p>
+    <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">Obtenez Votre Devis Gratuit</a>
+  </div>
+</section>
+
+<!-- T&Eacute;MOIGNAGE -->
+<section class="testi">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">T&eacute;moignage Client</div>
+      <h2 class="s-title">&Eacute;coutez un Acheteur Immobilier</h2>
+    </div>
+    <div style="max-width: 700px; margin: 0 auto;">
+      <div class="testi-card reveal" style="text-align: center;">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">With my limited Hebrew, it was a pleasure to deal with IsraTransfer who guided me through the whole process of buying my apartment. They saved me thousands on the exchange rate and made everything simple.</p>
+        <div class="testi-author" style="justify-content: center;">
+          <div class="testi-av">DW</div>
+          <div><div class="testi-name">Deborah Weissman</div><div class="testi-role">Acheteuse immobili&egrave;re, Tel Aviv</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq" aria-label="Questions fr&eacute;quemment pos&eacute;es sur l'achat immobilier">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">FAQ Immobilier</div>
+      <h2 class="s-title">Questions Fr&eacute;quemment<br>Pos&eacute;es</h2>
+      <p class="s-sub">Tout ce que vous devez savoir sur le transfert d'argent pour un achat immobilier en Isra&euml;l.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal rd1">
+        <button class="faq-q" aria-expanded="false">
+          Comment transf&eacute;rer de l'argent pour un achat immobilier en Isra&euml;l&nbsp;?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Ouvrez un compte IsraTransfer (gratuit, en quelques minutes), puis bloquez votre taux de change et transf&eacute;rez les fonds de votre banque vers nous. Nous convertissons la devise et virons les shekels directement sur le compte s&eacute;questre de votre avocat en Isra&euml;l. L'ensemble du processus prend g&eacute;n&eacute;ralement 1&ndash;2 jours ouvrables.</div></div>
+      </div>
+      <div class="faq-item reveal rd2">
+        <button class="faq-q" aria-expanded="false">
+          Puis-je bloquer un taux de change avant la finalisation&nbsp;?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Les contrats &agrave; terme vous permettent de bloquer le taux du jour pour un transfert &agrave; une date future. C'est particuli&egrave;rement populaire pour les paiements immobiliers &eacute;chelonn&eacute;s o&ugrave; vous avez besoin de certitude sur le co&ucirc;t final. Votre gestionnaire de compte vous expliquera les options selon votre calendrier.</div></div>
+      </div>
+      <div class="faq-item reveal rd3">
+        <button class="faq-q" aria-expanded="false">
+          Quels documents sont n&eacute;cessaires pour un transfert immobilier&nbsp;?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Vous aurez besoin d'une pi&egrave;ce d'identit&eacute; valide, d'un justificatif de domicile et d'une d&eacute;claration de l'origine des fonds. Pour les transferts immobiliers, nous pouvons &eacute;galement demander une copie du contrat d'achat. Votre gestionnaire de compte d&eacute;di&eacute; vous guidera exactement sur ce qui est requis pour votre transaction sp&eacute;cifique.</div></div>
+      </div>
+      <div class="faq-item reveal rd4">
+        <button class="faq-q" aria-expanded="false">
+          Combien de temps prend le transfert&nbsp;?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">La plupart des transferts immobiliers sont effectu&eacute;s en 1&ndash;2 jours ouvrables &agrave; compter de la r&eacute;ception de vos fonds. Le traitement le jour m&ecirc;me est disponible pour les transferts re&ccedil;us avant notre heure limite quotidienne. Votre gestionnaire de compte peut coordonner le timing avec votre avocat pour respecter les d&eacute;lais.</div></div>
+      </div>
+      <div class="faq-item reveal rd5">
+        <button class="faq-q" aria-expanded="false">
+          Les &eacute;trangers peuvent-ils acheter un bien en Isra&euml;l&nbsp;?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Les ressortissants &eacute;trangers peuvent acheter un bien en Isra&euml;l avec tr&egrave;s peu de restrictions. Vous n'avez pas besoin d'&ecirc;tre r&eacute;sident ou citoyen. Cependant, les acheteurs &eacute;trangers sont soumis &agrave; des taux de taxe d'achat plus &eacute;lev&eacute;s (&agrave; partir de 8&nbsp;%). Si vous faites votre Aliyah dans les 12&ndash;24 mois, vous pourriez b&eacute;n&eacute;ficier de taux r&eacute;duits r&eacute;troactivement.</div></div>
+      </div>
+      <div class="faq-item reveal rd6">
+        <button class="faq-q" aria-expanded="false">
+          Qu'est-ce que la taxe d'achat (Mas Rechisha)&nbsp;?
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">La taxe d'achat est un imp&ocirc;t gouvernemental obligatoire sur les acquisitions immobili&egrave;res en Isra&euml;l. Elle est calcul&eacute;e sur un bar&egrave;me progressif bas&eacute; sur la valeur du bien. La taxe doit &ecirc;tre pay&eacute;e dans les 60 jours suivant la signature du contrat. Les taux diff&egrave;rent pour les r&eacute;sidents isra&eacute;liens, les acheteurs &eacute;trangers et les nouveaux immigrants (Olim). Votre avocat calculera le montant exact.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <h2 class="cta-h2">Pr&ecirc;t &agrave; Acheter un Bien en <span class="grad">Isra&euml;l</span>&nbsp;?</h2>
+    <p class="cta-p">Rejoignez plus de 2&nbsp;500 acheteurs immobiliers qui ont &eacute;conomis&eacute; des milliers avec IsraTransfer. De meilleurs taux, un support expert et une totale tranquillit&eacute; d'esprit.</p>
+    <div class="cta-btns">
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">Ouvrir un Compte Gratuit</a>
+      <a href="https://www.isratransfer.com/contact" class="btn-cta-outline">Parler &agrave; un Expert Immobilier</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <a href="fr.html" class="footer-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+      <p class="footer-tagline">Experts en change de devises depuis 2008. De meilleurs taux que les banques, aucuns frais cach&eacute;s, un service de premi&egrave;re classe pour les transferts vers et depuis Isra&euml;l.</p>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <a href="mailto:info@isratransfer.com">info@isratransfer.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.73-1.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <a href="/contact">Nous Contacter</a>
+      </div>
+      <div class="footer-licence-badge">
+        <p>&#x1F3DB; Agr&eacute;&eacute; et R&eacute;glement&eacute;<br/><strong>Licence N&deg; 57488</strong><br/>Autorit&eacute; des March&eacute;s des Capitaux, Assurances et &Eacute;pargne</p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Achat Immobilier</h4>
+      <ul>
+        <li><a href="buying-property-fr.html">Acheter en Isra&euml;l</a></li>
+        <li><a href="/realestateinisrael">Immobilier en Isra&euml;l</a></li>
+        <li><a href="/citiesinisrael">Explorer les Villes d'Isra&euml;l</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Particuliers</h4>
+      <ul>
+        <li><a href="/transfer-money-israel">Transferts d'Argent</a></li>
+        <li><a href="/makingaliyah">Faire son Aliyah</a></li>
+        <li><a href="/money-transfer-app">Acc&egrave;s en Ligne</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <ul>
+        <li><a href="/about">&Agrave; Propos d'IsraTransfer</a></li>
+        <li><a href="/team">Notre &Eacute;quipe</a></li>
+        <li><a href="/license">Notre Licence</a></li>
+        <li><a href="/csr">Responsabilit&eacute; Sociale</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/careers">Carri&egrave;res</a></li>
+        <li><a href="/contact">Nous Contacter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-bottom-left">
+        <span class="footer-bottom-copy">&copy; 2025 IsraTransfer Ltd. Tous droits r&eacute;serv&eacute;s.</span>
+        <span class="footer-regulated">R&eacute;glement&eacute; par <span>Autorit&eacute; des March&eacute;s des Capitaux, Assurances et &Eacute;pargne</span> &middot; Licence 57488</span>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#">Politique de Confidentialit&eacute;</a>
+        <a href="#">Conditions d'Utilisation</a>
+        <a href="#">Politique de Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ──
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('mobile-drawer');
+  var drawerLinks = drawer.querySelectorAll('a');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Fermer le menu');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  drawerLinks.forEach(function(link) {
+    link.addEventListener('click', function() { closeMenu(); });
+  });
+  document.addEventListener('click', function(e) {
+    if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeMenu();
+  });
+
+  // ── Language dropdown ──
+  var langDropdown = document.getElementById('lang-dropdown');
+  var langTrigger = document.getElementById('lang-trigger');
+  if (langDropdown && langTrigger) {
+    langTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = langDropdown.classList.toggle('open');
+      langTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function(e) {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ── Scroll reveal ──
+  var obs = new IntersectionObserver(function(e) {
+    e.forEach(function(x) { if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+</body>
+</html>
