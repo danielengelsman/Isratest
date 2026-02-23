@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog | IsraTransfer &mdash; Change de Devises en Isra&euml;l</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #003CAA;
+      --teal:       #00A0FF;
+      --navy:       #0A1628;
+      --soft-white: #FAFBFC;
+      --light-bg:   #F0F4F8;
+      --text-dark:  #0A1628;
+      --text-gray:  #5A6B7D;
+      --green:      #00C853;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-dark);
+      background: var(--soft-white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV (French overrides) ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(29,61,143,.1);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 1.4rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; list-style: none; }
+    .nav-links a {
+      color: var(--text-dark); text-decoration: none;
+      font-weight: 600; font-size: .88rem;
+      transition: color .3s; position: relative;
+      white-space: nowrap;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+      background: var(--blue); transition: width .3s; border-radius: 2px;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-active { color: var(--blue) !important; }
+    .nav-active::after { width: 100% !important; }
+    .btn-nav {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; padding: .75rem 1.6rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .88rem;
+      transition: transform .3s, box-shadow .3s; box-shadow: 0 4px 15px rgba(29,61,143,.3);
+      white-space: nowrap;
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(29,61,143,.4); }
+    .btn-nav:active { transform: translateY(0); }
+    .btn-nav:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-login {
+      border: 2px solid var(--blue); color: var(--blue);
+      padding: .65rem 1.4rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .88rem;
+      transition: background .3s, color .3s;
+      white-space: nowrap;
+    }
+    .btn-login:hover { background: var(--blue); color: #fff; }
+    .btn-login:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* ── LANGUAGE DROPDOWN ── */
+    .lang-dropdown { position: relative; }
+    .lang-trigger {
+      display: flex; align-items: center; gap: 0.42rem;
+      background: none; border: 1.5px solid rgba(0,60,170,0.2);
+      border-radius: 8px; padding: 0.5rem 0.8rem;
+      cursor: pointer; font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem; font-weight: 700; color: var(--text-gray);
+      transition: background .18s, border-color .18s, color .18s;
+      white-space: nowrap;
+    }
+    .lang-trigger:hover { background: rgba(0,60,170,0.05); border-color: var(--blue); color: var(--blue); }
+    .lang-trigger:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 8px; }
+    .lang-flag { font-size: 1rem; line-height: 1; }
+    .lang-chevron { transition: transform .22s cubic-bezier(0.4,0,0.2,1); }
+    .lang-dropdown.open .lang-chevron { transform: rotate(180deg); }
+    .lang-menu {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: #fff;
+      border: 1px solid rgba(0,60,170,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,60,170,0.08), 0 16px 40px rgba(0,60,170,0.1);
+      min-width: 168px; z-index: 200; overflow: hidden;
+      opacity: 0; visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity .2s, visibility .2s, transform .22s cubic-bezier(0.4,0,0.2,1);
+    }
+    .lang-dropdown.open .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .lang-option {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.72rem 1rem;
+      font-size: 0.84rem; font-weight: 600; color: var(--text-gray);
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+    .lang-option + .lang-option { border-top: 1px solid rgba(0,60,170,0.06); }
+    .lang-option:hover { background: var(--light-bg); color: var(--blue); }
+    .lang-option.active { background: rgba(0,60,170,0.04); color: var(--blue); font-weight: 700; }
+    .lang-option-flag { font-size: 1.1rem; }
+    .lang-option-label { flex: 1; }
+    .lang-option-check { opacity: 0; flex-shrink: 0; }
+    .lang-option.active .lang-option-check { opacity: 1; }
+
+    /* ── HERO (Blog) ── */
+    .hero {
+      margin-top: 88px;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%);
+      position: relative; overflow: hidden;
+      padding: 5rem 0 4rem;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -30%; right: -15%;
+      width: 900px; height: 900px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,168,204,.14) 0%, transparent 70%);
+      animation: bgPulse 8s ease-in-out infinite;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -20%; left: -10%;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,61,143,.1) 0%, transparent 70%);
+      animation: bgPulse 10s ease-in-out infinite reverse;
+    }
+    @keyframes bgPulse {
+      0%,100% { transform: scale(1) translate(0,0); }
+      50% { transform: scale(1.1) translate(20px,-20px); }
+    }
+
+    .hero-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 3rem;
+      text-align: center; position: relative; z-index: 1; width: 100%;
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      font-weight: 900; line-height: 1.08;
+      letter-spacing: -2px; margin-bottom: 1.2rem;
+    }
+    .grad { background: linear-gradient(135deg, var(--blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .hero-sub {
+      font-size: 1.15rem; color: var(--text-gray);
+      line-height: 1.65; margin-bottom: 0; font-weight: 400;
+      max-width: 650px; margin: 0 auto;
+    }
+
+    /* ── SECTION SHARED ── */
+    .section-wrap { max-width: 1400px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 3rem; }
+    .s-eyebrow { font-size: .85rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; }
+    .s-title { font-size: clamp(2rem,4vw,3.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 1.2rem; }
+    .s-sub { font-size: 1.15rem; color: var(--text-gray); max-width: 650px; margin: 0 auto; line-height: 1.65; font-weight: 400; }
+
+    /* ── CATEGORY FILTER ── */
+    .blog-section { padding: 4rem 3rem 8rem; background: #fff; }
+    .category-filter {
+      display: flex; justify-content: center; gap: .6rem; flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .cat-btn {
+      background: none; border: 1.5px solid rgba(0,60,170,.12);
+      padding: .6rem 1.4rem; border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .85rem; font-weight: 700; color: var(--text-gray);
+      cursor: pointer;
+      transition: background .25s, color .25s, border-color .25s, transform .25s;
+    }
+    .cat-btn:hover {
+      border-color: var(--blue); color: var(--blue);
+      transform: translateY(-1px);
+    }
+    .cat-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .cat-btn.active {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; border-color: transparent;
+      box-shadow: 0 4px 15px rgba(0,60,170,.25);
+    }
+
+    /* ── BLOG GRID ── */
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem;
+    }
+    .blog-card {
+      background: #fff;
+      border: 1.5px solid rgba(0,60,170,.08);
+      border-radius: 24px; overflow: hidden;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s, box-shadow .4s;
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,60,170,.2);
+      box-shadow: 0 16px 50px rgba(0,60,170,.12);
+    }
+    .blog-card-img {
+      position: relative; height: 200px; overflow: hidden;
+    }
+    .blog-card-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(1.1);
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .blog-card:hover .blog-card-img img {
+      transform: scale(1.06);
+    }
+    .blog-card-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,.3) 0%, transparent 50%);
+    }
+    .blog-card-img-color {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,60,170,.1), rgba(0,160,255,.05));
+      mix-blend-mode: multiply;
+    }
+    .blog-card-cat {
+      position: absolute; top: 1rem; left: 1rem;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+      padding: .3rem .8rem; border-radius: 50px;
+      font-size: .7rem; font-weight: 800; color: var(--blue);
+      text-transform: uppercase; letter-spacing: 1.2px;
+    }
+    .blog-card-body {
+      padding: 1.6rem 1.8rem 2rem;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .blog-card-date {
+      font-size: .78rem; font-weight: 600; color: var(--text-gray);
+      margin-bottom: .6rem;
+    }
+    .blog-card-title {
+      font-size: 1.15rem; font-weight: 800; line-height: 1.35;
+      margin-bottom: .75rem; color: var(--text-dark);
+    }
+    .blog-card-title a {
+      color: inherit; text-decoration: none;
+      transition: color .2s;
+    }
+    .blog-card-title a:hover { color: var(--blue); }
+    .blog-card-excerpt {
+      font-size: .92rem; color: var(--text-gray); line-height: 1.7;
+      margin-bottom: 1.4rem; flex: 1;
+    }
+    .blog-card-link {
+      color: var(--blue); font-weight: 700; font-size: .88rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: .4rem;
+      transition: gap .3s;
+    }
+    .blog-card-link:hover { gap: .8rem; }
+    .blog-card-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+
+    /* ── FEATURED POST (TOP) ── */
+    .featured-post {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 0;
+      background: #fff; border: 1.5px solid rgba(0,60,170,.08);
+      border-radius: 28px; overflow: hidden; margin-bottom: 3.5rem;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s, border-color .4s;
+    }
+    .featured-post:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,60,170,.12);
+      border-color: rgba(0,60,170,.2);
+    }
+    .featured-img {
+      position: relative; min-height: 340px; overflow: hidden;
+    }
+    .featured-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(1.1);
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .featured-post:hover .featured-img img {
+      transform: scale(1.04);
+    }
+    .featured-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,60,170,.15), rgba(0,160,255,.1));
+      mix-blend-mode: multiply;
+    }
+    .featured-body {
+      padding: 3rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .featured-cat {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(0,60,170,.08), rgba(0,160,255,.08));
+      padding: .35rem .9rem; border-radius: 50px;
+      font-size: .72rem; font-weight: 800; color: var(--blue);
+      text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 1rem; width: fit-content;
+    }
+    .featured-date {
+      font-size: .82rem; font-weight: 600; color: var(--text-gray);
+      margin-bottom: .8rem;
+    }
+    .featured-title {
+      font-size: 1.6rem; font-weight: 900; line-height: 1.25;
+      letter-spacing: -.5px; margin-bottom: 1rem;
+    }
+    .featured-title a {
+      color: inherit; text-decoration: none;
+      transition: color .2s;
+    }
+    .featured-title a:hover { color: var(--blue); }
+    .featured-excerpt {
+      font-size: 1rem; color: var(--text-gray); line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+    .featured-link {
+      color: var(--blue); font-weight: 700; font-size: .95rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: .5rem;
+      transition: gap .3s;
+    }
+    .featured-link:hover { gap: 1rem; }
+    .featured-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 8rem 3rem;
+      background: linear-gradient(135deg, var(--navy), #0D2847);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+      width: 1000px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,168,204,.12) 0%, transparent 65%);
+    }
+    .cta-section::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .cta-h2 { font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 1.5rem; }
+    .cta-h2 .grad { background: linear-gradient(135deg, var(--teal), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-p { font-size: 1.3rem; opacity: .8; margin-bottom: 3rem; font-weight: 400; line-height: 1.6; }
+    .cta-btns { display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-primary {
+      background: #fff; color: var(--blue);
+      padding: 1.4rem 3.2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 800; font-size: 1.1rem;
+      transition: transform .3s, box-shadow .3s, background .3s; box-shadow: 0 10px 40px rgba(255,255,255,.2);
+    }
+    .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(255,255,255,.3); background: #f0f4ff; }
+    .btn-cta-primary:active { transform: translateY(-1px); }
+    .btn-cta-primary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .btn-cta-outline {
+      background: transparent; color: #fff;
+      border: 2.5px solid rgba(255,255,255,.5); padding: 1.4rem 3.2rem;
+      border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem;
+      transition: background .3s, border-color .3s, transform .3s;
+    }
+    .btn-cta-outline:hover { background: rgba(255,255,255,.1); border-color: #fff; transform: translateY(-3px); }
+    .btn-cta-outline:active { transform: translateY(-1px); }
+    .btn-cta-outline:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--soft-white);
+      border-top: 1px solid rgba(0,60,170,.1);
+    }
+    footer::before {
+      content: ''; display: block; height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+    .footer-main {
+      max-width: 1400px; margin: 0 auto;
+      padding: 4rem 3rem 3rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem;
+    }
+    .footer-logo { margin-bottom: 1.2rem; display: block; }
+    .footer-logo img { height: 38px; }
+    .footer-tagline { color: var(--text-gray); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 280px; }
+    .footer-contact-item { display: flex; align-items: center; gap: .8rem; margin-bottom: .8rem; }
+    .footer-contact-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-contact-icon svg { width:15px; height:15px; fill:none; stroke:#fff; stroke-width:2; }
+    .footer-contact-item a, .footer-contact-item span { font-size: .88rem; color: var(--text-gray); text-decoration: none; transition: color .2s; }
+    .footer-contact-item a:hover { color: var(--blue); }
+    .footer-licence-badge { margin-top: 1.5rem; padding: .75rem 1rem; background: rgba(0,60,170,.06); border: 1px solid rgba(0,60,170,.15); border-radius: 10px; }
+    .footer-licence-badge p { font-size: .78rem; color: var(--text-gray); line-height: 1.5; margin: 0; }
+    .footer-licence-badge strong { color: var(--blue); }
+    .footer-col h4 {
+      font-size: .88rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--text-dark); margin-bottom: 1.2rem; position: relative; padding-bottom: .6rem;
+    }
+    .footer-col h4::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 24px; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--teal)); border-radius: 2px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .65rem; }
+    .footer-col ul li a { font-size: .9rem; color: var(--text-gray); text-decoration: none; transition: color .2s, padding-left .2s; display: inline-block; }
+    .footer-col ul li a:hover { color: var(--blue); padding-left: 4px; }
+    .footer-bottom { background: #F0F4F8; border-top: 1px solid rgba(0,60,170,.08); }
+    .footer-bottom-inner {
+      max-width: 1400px; margin: 0 auto; padding: 1.2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom-left { display: flex; flex-direction: column; gap: .25rem; }
+    .footer-bottom-copy { font-size: .82rem; color: var(--text-gray); }
+    .footer-regulated { font-size: .78rem; color: var(--text-gray); }
+    .footer-regulated span { color: var(--blue); font-weight: 600; }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: .82rem; color: var(--text-gray); text-decoration: none; transition: color .2s; }
+    .footer-bottom-links a:hover { color: var(--blue); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp .8s cubic-bezier(.4,0,.2,1) forwards; }
+    .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; } .d3 { animation-delay: .4s; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s cubic-bezier(0.4,0,0.2,1), transform .65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: .05s; } .rd2 { transition-delay: .14s; } .rd3 { transition-delay: .22s; }
+    .rd4 { transition-delay: .3s; } .rd5 { transition-delay: .38s; } .rd6 { transition-delay: .46s; }
+
+    /* ── MOBILE MENU ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none;
+      flex-shrink: 0; z-index: 200;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-dark); border-radius: 2px;
+      transition: transform .28s cubic-bezier(0.4,0,0.2,1), opacity .2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger:focus-visible { outline: 2px solid var(--teal); border-radius: 6px; outline-offset: 2px; }
+
+    .mobile-drawer {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      z-index: 90; padding-top: 68px;
+      transform: translateY(-105%);
+      transition: transform .38s cubic-bezier(0.4,0,0.2,1);
+      border-bottom: 1px solid rgba(0,60,170,0.1);
+      box-shadow: 0 16px 56px rgba(0,60,170,0.12);
+    }
+    .mobile-drawer.open { transform: translateY(0); }
+    .mobile-drawer-inner { padding: 0.5rem 1.25rem 2rem; }
+    .mobile-nav-list { list-style: none; margin-bottom: 1.4rem; }
+    .mobile-nav-list li a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.95rem 0; font-size: 1rem; font-weight: 700; color: var(--text-dark);
+      text-decoration: none; border-bottom: 1px solid rgba(0,60,170,0.07);
+      transition: color .2s;
+    }
+    .mobile-nav-list li a:hover { color: var(--blue); }
+    .mobile-nav-list li a:focus-visible { outline: 2px solid var(--teal); border-radius: 4px; }
+    .mobile-nav-chevron { opacity: 0.3; }
+    .mobile-cta-group { display: flex; flex-direction: column; gap: 0.7rem; }
+    .mobile-cta-group a {
+      text-align: center; padding: 0.85rem; border-radius: 12px;
+      font-size: 0.93rem; display: block; text-decoration: none; font-weight: 700;
+    }
+    .mobile-lang-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .mobile-lang-opt {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 0.55rem 0.5rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 600; color: var(--text-gray);
+      text-decoration: none; border: 1.5px solid rgba(0,60,170,0.12);
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .mobile-lang-opt:hover { background: var(--light-bg); border-color: rgba(0,60,170,0.25); color: var(--blue); }
+    .mobile-lang-opt.active { background: rgba(0,60,170,0.06); border-color: var(--blue); color: var(--blue); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav-inner { padding: 1.1rem 2rem; }
+      .blog-grid { grid-template-columns: repeat(2,1fr); gap: 1.6rem; }
+      .featured-post { grid-template-columns: 1fr; }
+      .featured-img { min-height: 260px; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero { margin-top: 68px; padding: 3rem 0 2.5rem; }
+      .hero-inner { padding: 0 1.25rem; }
+      .hero-h1 { font-size: 2rem; letter-spacing: -1px; }
+      .hero-sub { font-size: 1rem; }
+      .blog-section { padding: 3rem 1.25rem 5rem; }
+      .category-filter { gap: .4rem; margin-bottom: 2.5rem; }
+      .cat-btn { padding: .5rem 1rem; font-size: .78rem; }
+      .blog-grid { grid-template-columns: 1fr; gap: 1.4rem; }
+      .featured-post { grid-template-columns: 1fr; border-radius: 20px; }
+      .featured-img { min-height: 220px; }
+      .featured-body { padding: 1.8rem 1.5rem; }
+      .featured-title { font-size: 1.3rem; }
+      .cta-section { padding: 4rem 1.25rem; }
+      .cta-h2 { font-size: 2rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 900px) {
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-bottom-inner { flex-direction: column; gap: .8rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .footer-main { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+    }
+  </style>
+
+  <!-- SEO -->
+  <meta name="description" content="D&eacute;couvrez nos articles sur l'immobilier en Isra&euml;l, le taux de change du shekel et les transferts d'argent. Analyses d'experts par l'&eacute;quipe IsraTransfer."/>
+  <meta name="keywords" content="blog IsraTransfer, immobilier Isra&euml;l, taux de change shekel, transfert argent Isra&euml;l, acheter en Isra&euml;l"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="IsraTransfer"/>
+  <link rel="canonical" href="https://www.isratransfer.com/blog-fr.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="alternate" hreflang="en" href="https://www.isratransfer.com/blog.html"/>
+  <link rel="alternate" hreflang="fr" href="https://www.isratransfer.com/blog-fr.html"/>
+  <link rel="alternate" hreflang="he" href="https://www.isratransfer.com/blog-he.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://www.isratransfer.com/blog.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.isratransfer.com/blog-fr.html"/>
+  <meta property="og:title" content="Blog | IsraTransfer &mdash; Change de Devises en Isra&euml;l"/>
+  <meta property="og:description" content="D&eacute;couvrez nos articles sur l'immobilier en Isra&euml;l, le taux de change du shekel et les transferts d'argent vers Isra&euml;l."/>
+  <meta property="og:site_name" content="IsraTransfer"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="fr.html" class="nav-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+    <ul class="nav-links">
+      <li><a href="buying-property-fr.html">Achat Immobilier</a></li>
+      <li><a href="#">Particuliers</a></li>
+      <li><a href="#">&Agrave; Propos</a></li>
+      <li><a href="blog-fr.html" class="nav-active">Blog</a></li>
+      <li>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button class="lang-trigger" id="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Choisir la langue">
+            <span class="lang-flag">&#x1F1EB;&#x1F1F7;</span>
+            <span>FR</span>
+            <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="lang-menu" role="menu">
+            <a href="blog.html" class="lang-option" role="menuitem" hreflang="en">
+              <span class="lang-option-flag">&#x1F1EC;&#x1F1E7;</span>
+              <span class="lang-option-label">English</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+            <a href="blog-fr.html" class="lang-option active" role="menuitem" hreflang="fr">
+              <span class="lang-option-flag">&#x1F1EB;&#x1F1F7;</span>
+              <span class="lang-option-label">Fran&ccedil;ais</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+            <a href="blog-he.html" class="lang-option" role="menuitem" hreflang="he">
+              <span class="lang-option-flag">&#x1F1EE;&#x1F1F1;</span>
+              <span class="lang-option-label">&#1506;&#1489;&#1512;&#1497;&#1514;</span>
+              <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li><a href="https://isratransfer.my.site.com/it/login" class="btn-login">Espace Client</a></li>
+      <li><a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-nav">Ouvrir un Compte &rarr;</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+  <div class="mobile-drawer-inner">
+    <div class="mobile-lang-row" role="navigation" aria-label="Choisir la langue">
+      <a href="blog.html" class="mobile-lang-opt" hreflang="en">&#x1F1EC;&#x1F1E7; English</a>
+      <a href="blog-fr.html" class="mobile-lang-opt active" hreflang="fr">&#x1F1EB;&#x1F1F7; Fran&ccedil;ais</a>
+      <a href="blog-he.html" class="mobile-lang-opt" hreflang="he">&#x1F1EE;&#x1F1F1; &#1506;&#1489;&#1512;&#1497;&#1514;</a>
+    </div>
+    <ul class="mobile-nav-list" role="list">
+      <li><a href="buying-property-fr.html">Achat Immobilier <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#">Particuliers <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#">&Agrave; Propos <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="blog-fr.html" style="color: var(--blue);">Blog <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+    </ul>
+    <div class="mobile-cta-group">
+      <a href="https://isratransfer.my.site.com/it/login" style="border: 2px solid var(--blue); color: var(--blue);">Espace Client</a>
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" style="background: linear-gradient(135deg, var(--blue), var(--teal)); color: #fff;">Ouvrir un Compte &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-h1 fade-up d1">
+      Le <span class="grad">Blog</span><br>IsraTransfer
+    </h1>
+    <p class="hero-sub fade-up d2">Analyses d'experts sur l'immobilier en Isra&euml;l, le taux de change du shekel, les march&eacute;s des devises et tout ce que vous devez savoir sur les transferts d'argent vers Isra&euml;l.</p>
+  </div>
+</section>
+
+<!-- BLOG CONTENT -->
+<section class="blog-section">
+  <div class="section-wrap">
+
+    <!-- Category Filter -->
+    <div class="category-filter fade-up d3">
+      <button class="cat-btn active" data-cat="all">Tous les Articles</button>
+      <button class="cat-btn" data-cat="real-estate">Immobilier en Isra&euml;l</button>
+      <button class="cat-btn" data-cat="economy">Le Change du Shekel</button>
+      <button class="cat-btn" data-cat="team">L'&Eacute;quipe</button>
+      <button class="cat-btn" data-cat="podcasts">Podcasts</button>
+    </div>
+
+    <!-- Featured Post -->
+    <div class="featured-post reveal" data-cat="real-estate">
+      <div class="featured-img">
+        <img src="https://placehold.co/800x500/1a2e4a/1a2e4a" alt="Tout ce que vous devez savoir pour acheter un bien en Isra&euml;l"/>
+        <div class="featured-img-overlay"></div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-cat">Immobilier en Isra&euml;l</div>
+        <div class="featured-date">22 d&eacute;cembre 2024</div>
+        <h2 class="featured-title"><a href="#">Tout ce que vous devez savoir pour acheter un bien en Isra&euml;l</a></h2>
+        <p class="featured-excerpt">Un guide complet couvrant chaque &eacute;tape du processus d'achat immobilier en Isra&euml;l &mdash; de la recherche de votre bien id&eacute;al &agrave; la compr&eacute;hension des taxes d'acquisition et des frais juridiques.</p>
+        <a href="#" class="featured-link">Lire l'Article Complet &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid">
+
+      <!-- Post 1 -->
+      <div class="blog-card reveal rd1" data-cat="economy">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/0D2847/0D2847" alt="Le Shekel en Chiffres 2025"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Le Change du Shekel</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">23 janvier 2025</div>
+          <h3 class="blog-card-title"><a href="#">Le Shekel en Chiffres &mdash; 2025</a></h3>
+          <p class="blog-card-excerpt">Un aper&ccedil;u de la performance du shekel isra&eacute;lien face aux principales devises en 2024, et les tendances pr&eacute;vues pour 2025.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="blog-card reveal rd2" data-cat="economy">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a3a5c/1a3a5c" alt="Pourquoi le Dollar est-il si faible face au Shekel"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Le Change du Shekel</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">28 ao&ucirc;t 2024</div>
+          <h3 class="blog-card-title"><a href="#">Pourquoi le Dollar est-il si faible face au Shekel ?</a></h3>
+          <p class="blog-card-excerpt">Comprendre les facteurs derri&egrave;re la faiblesse du dollar face au shekel, y compris le secteur tech isra&eacute;lien et les diff&eacute;rentiels de taux.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="blog-card reveal rd3" data-cat="real-estate">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a4a6e/1a4a6e" alt="Acheter en Isra&euml;l : Bilan du March&eacute; 2024"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Immobilier en Isra&euml;l</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">15 juillet 2024</div>
+          <h3 class="blog-card-title"><a href="#">Acheter en Isra&euml;l : Bilan du March&eacute; 2024</a></h3>
+          <p class="blog-card-excerpt">Les derni&egrave;res donn&eacute;es sur les prix immobiliers en Isra&euml;l, les tendances r&eacute;gionales et ce que les acheteurs &eacute;trangers doivent savoir.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 4 -->
+      <div class="blog-card reveal rd4" data-cat="economy">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a3550/1a3550" alt="Le Shekel en Chiffres 2024"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Le Change du Shekel</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">31 janvier 2024</div>
+          <h3 class="blog-card-title"><a href="#">Le Shekel en Chiffres &mdash; 2024</a></h3>
+          <p class="blog-card-excerpt">Notre bilan annuel de la performance du shekel. Comment la monnaie isra&eacute;lienne a &eacute;volu&eacute; face au dollar, &agrave; la livre et &agrave; l'euro en 2023.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 5 -->
+      <div class="blog-card reveal rd5" data-cat="podcasts">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a2844/1a2844" alt="Podcast Money Matters : Le March&eacute; Immobilier Isra&eacute;lien"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Podcasts</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">10 juin 2024</div>
+          <h3 class="blog-card-title"><a href="#">Podcast Money Matters : Le March&eacute; Immobilier Isra&eacute;lien</a></h3>
+          <p class="blog-card-excerpt">Dans cet &eacute;pisode, nous discutons de l'&eacute;tat du march&eacute; immobilier isra&eacute;lien avec des experts du secteur et explorons ses implications pour les acheteurs.</p>
+          <a href="#" class="blog-card-link">&Eacute;couter &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 6 -->
+      <div class="blog-card reveal rd6" data-cat="real-estate">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a3048/1a3048" alt="Les meilleures villes pour acheter en Isra&euml;l"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Immobilier en Isra&euml;l</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">20 mai 2024</div>
+          <h3 class="blog-card-title"><a href="#">Les meilleures villes pour acheter en Isra&euml;l</a></h3>
+          <p class="blog-card-excerpt">De J&eacute;rusalem &agrave; Netanya, d&eacute;couvrez les villes les plus pris&eacute;es pour l'investissement immobilier en Isra&euml;l, avec comparaison des prix et du cadre de vie.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 7 -->
+      <div class="blog-card reveal rd1" data-cat="team">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a2e4a/1a2e4a" alt="Portrait d'&Eacute;quipe : Daniel Engelsman"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">L'&Eacute;quipe</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">8 avril 2024</div>
+          <h3 class="blog-card-title"><a href="#">Portrait d'&Eacute;quipe : D&eacute;couvrez Daniel Engelsman</a></h3>
+          <p class="blog-card-excerpt">Faites connaissance avec Daniel, l'un des gestionnaires de compte d&eacute;di&eacute;s d'IsraTransfer, et d&eacute;couvrez comment il aide ses clients dans leurs transferts immobiliers.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 8 -->
+      <div class="blog-card reveal rd2" data-cat="economy">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a3a5c/1a3a5c" alt="Comprendre les Contrats &agrave; Terme"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Le Change du Shekel</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">18 mars 2024</div>
+          <h3 class="blog-card-title"><a href="#">Comprendre les Contrats &agrave; Terme pour l'Achat Immobilier</a></h3>
+          <p class="blog-card-excerpt">Comment fonctionnent les contrats &agrave; terme, pourquoi ils sont importants pour les acheteurs et comment les utiliser pour prot&eacute;ger votre prix d'achat.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 9 -->
+      <div class="blog-card reveal rd3" data-cat="real-estate">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a4a6e/1a4a6e" alt="La Taxe d'Acquisition en Isra&euml;l"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Immobilier en Isra&euml;l</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">25 f&eacute;vrier 2024</div>
+          <h3 class="blog-card-title"><a href="#">La Taxe d'Acquisition en Isra&euml;l : Guide Complet</a></h3>
+          <p class="blog-card-excerpt">Tout savoir sur le Mas Rechisha &mdash; la taxe d'acquisition immobili&egrave;re en Isra&euml;l, y compris les taux, les exemptions pour les Olim et les d&eacute;lais de paiement.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 10 -->
+      <div class="blog-card reveal rd4" data-cat="team">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a3550/1a3550" alt="Responsabilit&eacute; Sociale d'IsraTransfer"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">L'&Eacute;quipe</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">15 janvier 2024</div>
+          <h3 class="blog-card-title"><a href="#">Responsabilit&eacute; Sociale d'IsraTransfer</a></h3>
+          <p class="blog-card-excerpt">Comment IsraTransfer contribue &agrave; la communaut&eacute; &agrave; travers des partenariats caritatifs et des programmes de responsabilit&eacute; sociale en Isra&euml;l.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 11 -->
+      <div class="blog-card reveal rd5" data-cat="podcasts">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a2844/1a2844" alt="Podcast Money Matters : March&eacute;s des Devises"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Podcasts</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">5 d&eacute;cembre 2023</div>
+          <h3 class="blog-card-title"><a href="#">Podcast Money Matters : Naviguer sur les March&eacute;s des Devises</a></h3>
+          <p class="blog-card-excerpt">Nos experts discutent des derni&egrave;res tendances des march&eacute;s des devises et partagent des conseils pratiques pour obtenir les meilleurs taux de change.</p>
+          <a href="#" class="blog-card-link">&Eacute;couter &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Post 12 -->
+      <div class="blog-card reveal rd6" data-cat="economy">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/1a3048/1a3048" alt="L'&Eacute;conomie Isra&eacute;lienne et le Shekel"/>
+          <div class="blog-card-img-overlay"></div>
+          <div class="blog-card-img-color"></div>
+          <span class="blog-card-cat">Le Change du Shekel</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">12 novembre 2023</div>
+          <h3 class="blog-card-title"><a href="#">L'&Eacute;conomie Isra&eacute;lienne : Qu'est-ce qui Influence le Shekel ?</a></h3>
+          <p class="blog-card-excerpt">Un regard approfondi sur les facteurs &eacute;conomiques cl&eacute;s qui influencent le shekel, des exportations tech &agrave; la politique de la banque centrale.</p>
+          <a href="#" class="blog-card-link">Lire la Suite &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <h2 class="cta-h2">Pr&ecirc;t &agrave; transf&eacute;rer de l'argent en <span class="grad">Isra&euml;l</span> ?</h2>
+    <p class="cta-p">Rejoignez des milliers de clients satisfaits qui &eacute;conomisent sur chaque transfert. Meilleurs taux, accompagnement expert et tranquillit&eacute; totale.</p>
+    <div class="cta-btns">
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">Ouvrir un Compte Gratuit</a>
+      <a href="https://www.isratransfer.com/contact" class="btn-cta-outline">Parler &agrave; un Expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <a href="fr.html" class="footer-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+      <p class="footer-tagline">Experts en change de devises depuis 2008. Meilleurs taux que les banques, sans frais cach&eacute;s, service de premier ordre pour les transferts vers et depuis Isra&euml;l.</p>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <a href="mailto:info@isratransfer.com">info@isratransfer.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.73-1.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <a href="/contact">Contactez-nous</a>
+      </div>
+      <div class="footer-licence-badge">
+        <p>&#x1F3DB; Licenci&eacute; et R&eacute;glement&eacute;<br/><strong>Licence N&deg; 57488</strong><br/>Autorit&eacute; des March&eacute;s des Capitaux</p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Achat Immobilier</h4>
+      <ul>
+        <li><a href="buying-property-fr.html">Acheter en Isra&euml;l</a></li>
+        <li><a href="/realestateinisrael">Immobilier en Isra&euml;l</a></li>
+        <li><a href="/citiesinisrael">Villes d'Isra&euml;l</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Particuliers</h4>
+      <ul>
+        <li><a href="/transfer-money-israel">Transferts d'Argent</a></li>
+        <li><a href="/makingaliyah">Faire son Aliyah</a></li>
+        <li><a href="/money-transfer-app">Acc&egrave;s en Ligne</a></li>
+        <li><a href="blog-fr.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <ul>
+        <li><a href="/about">&Agrave; Propos d'IsraTransfer</a></li>
+        <li><a href="/team">L'&Eacute;quipe</a></li>
+        <li><a href="/license">Notre Licence</a></li>
+        <li><a href="/csr">Responsabilit&eacute; Sociale</a></li>
+        <li><a href="blog-fr.html">Blog</a></li>
+        <li><a href="/careers">Carri&egrave;res</a></li>
+        <li><a href="/contact">Contactez-nous</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-bottom-left">
+        <span class="footer-bottom-copy">&copy; 2025 IsraTransfer Ltd. Tous droits r&eacute;serv&eacute;s.</span>
+        <span class="footer-regulated">R&eacute;glement&eacute; par <span>l'Autorit&eacute; des March&eacute;s des Capitaux</span> &middot; Licence 57488</span>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#">Politique de Confidentialit&eacute;</a>
+        <a href="#">Conditions d'Utilisation</a>
+        <a href="#">Politique de Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ──
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('mobile-drawer');
+  var drawerLinks = drawer.querySelectorAll('a');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Fermer le menu');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  drawerLinks.forEach(function(link) {
+    link.addEventListener('click', function() { closeMenu(); });
+  });
+  document.addEventListener('click', function(e) {
+    if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeMenu();
+  });
+
+  // ── Language dropdown ──
+  var langDropdown = document.getElementById('lang-dropdown');
+  var langTrigger = document.getElementById('lang-trigger');
+  if (langDropdown && langTrigger) {
+    langTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = langDropdown.classList.toggle('open');
+      langTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function(e) {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ── Scroll reveal ──
+  var obs = new IntersectionObserver(function(e) {
+    e.forEach(function(x) { if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // ── Category filter ──
+  var catBtns = document.querySelectorAll('.cat-btn');
+  var blogCards = document.querySelectorAll('.blog-card, .featured-post');
+  catBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      catBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.getAttribute('data-cat');
+      blogCards.forEach(function(card) {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
