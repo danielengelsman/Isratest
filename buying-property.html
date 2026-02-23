@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IsraTransfer — La Meilleure Façon d'Envoyer de l'Argent en Israël</title>
+  <title>Buying Property in Israel | IsraTransfer — Save on Currency Exchange</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,12 +41,11 @@
     }
     .nav-logo { text-decoration: none; display: flex; align-items: center; }
     .nav-logo img { height: 36px; width: auto; display: block; }
-    .nav-links { display: flex; gap: 1.8rem; align-items: center; list-style: none; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
     .nav-links a {
       color: var(--text-dark); text-decoration: none;
-      font-weight: 600; font-size: .88rem;
+      font-weight: 600; font-size: .95rem;
       transition: color .3s; position: relative;
-      white-space: nowrap;
     }
     .nav-links a::after {
       content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
@@ -54,22 +53,22 @@
     }
     .nav-links a:hover { color: var(--blue); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-active { color: var(--blue) !important; }
+    .nav-active::after { width: 100% !important; }
     .btn-nav {
       background: linear-gradient(135deg, var(--blue), var(--teal));
-      color: #fff; padding: .75rem 1.6rem; border-radius: 50px;
-      text-decoration: none; font-weight: 700; font-size: .88rem;
+      color: #fff; padding: .85rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .95rem;
       transition: transform .3s, box-shadow .3s; box-shadow: 0 4px 15px rgba(29,61,143,.3);
-      white-space: nowrap;
     }
     .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(29,61,143,.4); }
     .btn-nav:active { transform: translateY(0); }
     .btn-nav:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
     .btn-login {
       border: 2px solid var(--blue); color: var(--blue);
-      padding: .65rem 1.4rem; border-radius: 50px;
-      text-decoration: none; font-weight: 700; font-size: .88rem;
+      padding: .75rem 1.6rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .95rem;
       transition: background .3s, color .3s;
-      white-space: nowrap;
     }
     .btn-login:hover { background: var(--blue); color: #fff; }
     .btn-login:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
@@ -119,7 +118,7 @@
 
     /* ── HERO ── */
     .hero {
-      margin-top: 88px; min-height: 95vh;
+      margin-top: 88px; min-height: 80vh;
       display: flex; align-items: center;
       background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%);
       position: relative; overflow: hidden;
@@ -143,20 +142,25 @@
 
     .hero-inner {
       max-width: 1400px; margin: 0 auto; padding: 4rem 3rem;
-      display: grid; grid-template-columns: 1.15fr 1fr; gap: 5rem;
+      display: grid; grid-template-columns: 1fr; gap: 0;
       align-items: center; position: relative; z-index: 1; width: 100%;
     }
+    .hero-inner--single {
+      max-width: 900px; text-align: center;
+    }
+    .hero-inner--single .hero-cta { justify-content: center; }
+    .hero-inner--single .hero-trust { justify-content: center; }
 
     .hero-h1 {
-      font-size: clamp(3rem, 5vw, 5rem);
-      font-weight: 900; line-height: 1.05;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 900; line-height: 1.08;
       letter-spacing: -2px; margin-bottom: 1.8rem;
     }
     .grad { background: linear-gradient(135deg, var(--blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .accent { color: var(--teal); }
 
     .hero-sub {
-      font-size: 1.25rem; color: var(--text-gray);
+      font-size: 1.2rem; color: var(--text-gray);
       line-height: 1.65; margin-bottom: 2.8rem; font-weight: 400;
     }
     .hero-cta { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
@@ -183,99 +187,6 @@
     }
     .trust-item { display: flex; align-items: center; gap: .4rem; }
     .trust-item svg { flex-shrink: 0; }
-
-    /* Rate card */
-    .hero-visual { position: relative; }
-    .rate-card {
-      background: #fff; border-radius: 30px; padding: 2.5rem;
-      box-shadow: 0 30px 80px rgba(0,0,0,.12);
-      position: relative; overflow: hidden;
-    }
-    .rate-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
-      background: linear-gradient(90deg, var(--blue), var(--teal));
-    }
-    .rate-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-    .rate-label { font-size: .95rem; color: var(--text-gray); font-weight: 600; }
-    .live-badge { display: flex; align-items: center; gap: .4rem; color: var(--green); font-weight: 700; font-size: .85rem; }
-    .live-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-    /* multi-rate rows */
-    .rate-rows { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.5rem; }
-    .rate-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.2rem; background: linear-gradient(135deg, rgba(29,61,143,.04), rgba(0,168,204,.04)); border-radius: 16px; }
-    .rate-row-left { display: flex; align-items: center; gap: .8rem; }
-    .rate-flag { font-size: 1.5rem; }
-    .rate-pair-name { font-size: .88rem; font-weight: 700; color: var(--text-dark); }
-    .rate-pair-sub { font-size: .73rem; color: var(--text-gray); margin-top: 2px; }
-    .rate-val { font-size: 1.4rem; font-weight: 900; color: var(--blue); letter-spacing: -.03em; }
-    .rate-save-tag { font-size: .68rem; font-weight: 700; color: var(--green); margin-top: 2px; text-align: right; }
-
-    .savings-box {
-      background: linear-gradient(135deg, rgba(29,61,143,.06), rgba(0,168,204,.06));
-      padding: 1.3rem 1.5rem; border-radius: 18px;
-    }
-    .savings-label { font-size: .88rem; color: var(--text-gray); margin-bottom: .3rem; font-weight: 500; }
-    .savings-amount { font-size: 1.8rem; font-weight: 900; color: var(--green); letter-spacing: -.03em; }
-    .savings-sub { font-size: .78rem; color: var(--text-gray); margin-top: .3rem; }
-
-    /* Floating badges */
-    .float-badge {
-      position: absolute; background: #fff;
-      padding: 1rem 1.5rem; border-radius: 18px;
-      box-shadow: 0 15px 40px rgba(0,0,0,.1);
-      font-weight: 700; font-size: .88rem;
-      display: flex; align-items: center; gap: .7rem;
-      white-space: nowrap;
-    }
-    .fb1 { top: -18px; right: -18px; animation: floatUp 6s ease-in-out infinite; }
-    .fb2 { bottom: 50px; left: -42px; animation: floatUp 7s ease-in-out infinite 1s; }
-    @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
-    .fb-icon { width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg, var(--blue), var(--teal)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-    /* ── STATS BAR ── */
-    .stats-bar {
-      background: linear-gradient(135deg, #00183a 0%, #001f50 100%);
-      padding: 0 3rem;
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      position: relative; overflow: hidden;
-    }
-    .stats-bar::before {
-      content: ''; position: absolute; top: -60%; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(0,160,255,.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .stats-inner {
-      max-width: 1400px; margin: 0 auto;
-      display: flex; align-items: stretch;
-      position: relative; z-index: 1;
-    }
-    .stat {
-      flex: 1; text-align: center;
-      padding: 3rem 2rem;
-      display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      position: relative;
-      transition: background .3s;
-    }
-    .stat:hover { background: rgba(255,255,255,.03); }
-    .stat-divider {
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.12), transparent);
-      align-self: stretch; flex-shrink: 0;
-    }
-    .stat-num {
-      font-size: 3.2rem; font-weight: 900;
-      background: linear-gradient(135deg, #fff 30%, var(--teal));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; letter-spacing: -.05em; line-height: 1;
-    }
-    .stat-lbl {
-      font-size: .82rem; color: rgba(255,255,255,.45);
-      font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
-      margin-top: .2rem;
-    }
 
     /* ── SECTION SHARED ── */
     .section-wrap { max-width: 1400px; margin: 0 auto; }
@@ -315,26 +226,115 @@
 
     /* ── PROCESS ── */
     .process { padding: 8rem 3rem; background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%); }
-    .process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3.5rem; margin-top: 5rem; position: relative; }
+    .process-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 2rem; margin-top: 5rem; position: relative; }
     .process-grid::before {
-      content: ''; position: absolute; top: 48px; left: calc(16.6% + 20px); right: calc(16.6% + 20px);
+      content: ''; position: absolute; top: 48px; left: calc(10% + 20px); right: calc(10% + 20px);
       height: 2px; background: linear-gradient(90deg, var(--blue), var(--teal));
       opacity: .25; z-index: 0;
     }
     .process-step { text-align: center; position: relative; z-index: 1; }
     .step-num {
-      width: 96px; height: 96px; margin: 0 auto 2rem;
+      width: 80px; height: 80px; margin: 0 auto 1.5rem;
       background: linear-gradient(135deg, var(--blue), var(--teal));
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 2.5rem; font-weight: 900; color: #fff;
+      font-size: 2rem; font-weight: 900; color: #fff;
       box-shadow: 0 10px 30px rgba(29,61,143,.3);
     }
-    .step-title { font-size: 1.5rem; font-weight: 800; margin-bottom: .8rem; }
-    .step-desc { color: var(--text-gray); font-size: 1rem; line-height: 1.7; font-weight: 400; }
+    .step-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .6rem; }
+    .step-desc { color: var(--text-gray); font-size: .92rem; line-height: 1.7; font-weight: 400; }
+
+    /* ── INFO CARDS ── */
+    .info-section { padding: 8rem 3rem; background: #fff; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .info-card {
+      background: #fff;
+      border: 1.5px solid rgba(0, 60, 170, 0.08);
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s, box-shadow .4s;
+    }
+    .info-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 60, 170, 0.2);
+      box-shadow: 0 12px 40px rgba(0, 60, 170, 0.1);
+    }
+    .info-card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(0,60,170,.08), rgba(0,160,255,.08));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .info-card-label {
+      font-size: .75rem; font-weight: 800; color: var(--blue);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: .5rem;
+    }
+    .info-card-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
+    .info-card-desc { color: var(--text-gray); font-size: .95rem; line-height: 1.7; }
+
+    /* ── LOCATIONS ── */
+    .locations { padding: 8rem 3rem; background: linear-gradient(135deg, #FAFBFC 0%, #F0F4F8 100%); }
+    .locations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .location-card {
+      border-radius: 24px; overflow: hidden; position: relative;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s;
+    }
+    .location-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 60, 170, 0.15);
+    }
+    .location-img {
+      width: 100%; height: 240px; object-fit: cover; display: block;
+      filter: saturate(1.1);
+    }
+    .location-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10, 22, 40, 0.8) 0%, rgba(10, 22, 40, 0.1) 50%, transparent 100%);
+    }
+    .location-color-layer {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,60,170,.15), rgba(0,160,255,.1));
+      mix-blend-mode: multiply;
+    }
+    .location-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1.8rem; color: #fff;
+    }
+    .location-name { font-size: 1.4rem; font-weight: 800; margin-bottom: .3rem; }
+    .location-desc { font-size: .85rem; opacity: .85; line-height: 1.5; }
+
+    /* ── SAVINGS HIGHLIGHT ── */
+    .savings-highlight {
+      padding: 6rem 3rem;
+      background: linear-gradient(135deg, var(--navy), #0D2847);
+      color: #fff; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .savings-highlight::before {
+      content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 160, 255, 0.12) 0%, transparent 65%);
+    }
+    .savings-highlight::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .savings-highlight-inner {
+      max-width: 800px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .savings-big-number {
+      font-size: clamp(3rem, 6vw, 5rem); font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 1rem; letter-spacing: -2px;
+    }
+    .savings-context {
+      font-size: 1.25rem; opacity: .85; line-height: 1.6;
+      max-width: 600px; margin: 0 auto 2.5rem;
+    }
 
     /* ── TESTIMONIALS ── */
     .testi { padding: 8rem 3rem; background: #fff; }
-    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; margin-top: 5rem; }
     .testi-card {
       background: linear-gradient(135deg, rgba(29,61,143,.03), rgba(0,168,204,.03));
       border: 2px solid rgba(29,61,143,.08);
@@ -348,13 +348,13 @@
       color: rgba(29,61,143,.07); margin-bottom: -.5rem;
       font-family: Georgia, serif;
     }
-    .testi-text { font-size: 1rem; color: var(--text-gray); line-height: 1.72; margin-bottom: 1.8rem; font-weight: 400; font-style: italic; }
+    .testi-text { font-size: 1.05rem; color: var(--text-gray); line-height: 1.72; margin-bottom: 1.8rem; font-weight: 400; font-style: italic; }
     .testi-author { display: flex; align-items: center; gap: 1rem; }
     .testi-av {
-      width: 44px; height: 44px; border-radius: 50%;
+      width: 48px; height: 48px; border-radius: 50%;
       background: linear-gradient(135deg, var(--blue), var(--teal));
       display: flex; align-items: center; justify-content: center;
-      font-size: .82rem; font-weight: 700; color: #fff; flex-shrink: 0;
+      font-size: .85rem; font-weight: 700; color: #fff; flex-shrink: 0;
     }
     .testi-name { font-weight: 800; font-size: .95rem; }
     .testi-role { font-size: .8rem; color: var(--text-gray); margin-top: 2px; }
@@ -394,7 +394,7 @@
     }
     .faq-item.open .faq-icon svg { stroke: #fff; }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(0.4,0,0.2,1); }
-    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-item.open .faq-a { max-height: 400px; }
     .faq-a-inner {
       padding: 1rem 1.6rem 1.4rem;
       font-size: 0.92rem; color: var(--text-gray); line-height: 1.78; font-weight: 400;
@@ -563,9 +563,11 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .nav-inner { padding: 1.1rem 2rem; }
-      .hero-inner { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+      .hero-inner { padding: 4rem 2rem; }
       .feat-grid { grid-template-columns: repeat(2,1fr); gap: 1.4rem; }
-      .testi-grid { grid-template-columns: repeat(2,1fr); gap: 1.4rem; }
+      .process-grid { grid-template-columns: repeat(3,1fr); }
+      .info-grid { grid-template-columns: repeat(2,1fr); }
+      .locations-grid { grid-template-columns: repeat(2,1fr); }
       .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
     }
     @media (max-width: 768px) {
@@ -573,18 +575,16 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .hero { margin-top: 68px; min-height: auto; padding: 2rem 0; }
-      .hero-inner { padding: 2rem 1.25rem; gap: 2rem; }
+      .hero-inner { padding: 2rem 1.25rem; }
+      .hero-inner--single { text-align: left; }
+      .hero-inner--single .hero-cta { justify-content: flex-start; }
+      .hero-inner--single .hero-trust { justify-content: flex-start; }
       .hero-h1 { font-size: 2.2rem; letter-spacing: -1px; }
       .hero-sub { font-size: 1rem; }
       .hero-trust { flex-direction: column; align-items: flex-start; gap: .8rem; }
-      .float-badge { display: none; }
-      .stats-inner { flex-wrap: wrap; }
-      .stat { min-width: 50%; padding: 2rem 1rem; }
-      .stat-divider { display: none; }
-      .stat-num { font-size: 2.2rem; }
-      .features, .testi, .faq-section, .process { padding: 4rem 1.25rem; }
+      .features, .testi, .faq-section, .process, .info-section, .locations { padding: 4rem 1.25rem; }
       .section-head { margin-bottom: 3rem; }
-      .feat-grid, .process-grid, .testi-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .feat-grid, .process-grid, .info-grid, .locations-grid { grid-template-columns: 1fr; gap: 1.2rem; }
       .process-grid::before { display: none; }
       .feat-card { padding: 2rem; }
       .step-num { width: 72px; height: 72px; font-size: 1.8rem; }
@@ -593,6 +593,7 @@
       .cta-btns { flex-direction: column; align-items: center; }
       .faq-q { padding: 1.05rem 1.25rem; font-size: 0.9rem; }
       .faq-a-inner { padding: 0.9rem 1.25rem 1.2rem; }
+      .savings-highlight { padding: 3.5rem 1.25rem; }
     }
     @media (max-width: 900px) {
       .footer-main { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
@@ -603,364 +604,425 @@
     }
   </style>
 
-  <!-- SEO & GEO Optimisation -->
-  <meta name="description" content="IsraTransfer — Experts en change de devises depuis 2008. Envoyez de l'argent en Israël moins cher que les banques avec de meilleurs taux de change, aucuns frais cachés et un service de première classe. Agréé par l'Autorité des Marchés des Capitaux, Assurances et Épargne (Licence 57488)."/>
-  <meta name="keywords" content="envoyer argent Israël, change devises Israël, transfert NIS, acheter propriété Israël, taux de change shekel, IsraTransfer, transfert argent Israël"/>
+  <!-- SEO -->
+  <meta name="description" content="Buy property in Israel and save thousands on currency exchange. IsraTransfer offers better rates than banks, forward contracts, and direct transfers to lawyer trust accounts. Licensed #57488."/>
+  <meta name="keywords" content="buy property Israel, buying property in Israel, Israel real estate, currency exchange Israel property, IsraTransfer, forward contract Israel, property transfer Israel"/>
   <meta name="robots" content="index, follow"/>
   <meta name="author" content="IsraTransfer"/>
-  <link rel="canonical" href="https://www.isratransfer.com/fr.html"/>
+  <link rel="canonical" href="https://www.isratransfer.com/buying-property.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="alternate" hreflang="en-gb" href="https://www.isratransfer.com/"/>
-  <link rel="alternate" hreflang="en-us" href="https://www.isratransfer.com/"/>
-  <link rel="alternate" hreflang="en-il" href="https://www.isratransfer.com/"/>
-  <link rel="alternate" hreflang="fr" href="https://www.isratransfer.com/fr.html"/>
-  <link rel="alternate" hreflang="he" href="https://www.isratransfer.com/he.html"/>
-  <link rel="alternate" hreflang="x-default" href="https://www.isratransfer.com/"/>
+  <link rel="alternate" hreflang="en" href="https://www.isratransfer.com/buying-property.html"/>
+  <link rel="alternate" hreflang="fr" href="https://www.isratransfer.com/buying-property-fr.html"/>
+  <link rel="alternate" hreflang="he" href="https://www.isratransfer.com/buying-property-he.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://www.isratransfer.com/buying-property.html"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://www.isratransfer.com/fr.html"/>
-  <meta property="og:title" content="IsraTransfer | La Meilleure Façon d'Envoyer de l'Argent en Israël"/>
-  <meta property="og:description" content="Experts en change de devises depuis 2008. De meilleurs taux que les banques, aucuns frais cachés, entièrement agréé. La confiance de plus de 15 000 clients pour les transferts vers et depuis Israël."/>
+  <meta property="og:url" content="https://www.isratransfer.com/buying-property.html"/>
+  <meta property="og:title" content="Buying Property in Israel | IsraTransfer — Save on Currency Exchange"/>
+  <meta property="og:description" content="Save thousands on your property purchase in Israel. Better rates than banks, forward contracts, direct transfers to lawyer trust accounts. Licensed &amp; trusted since 2008."/>
   <meta property="og:site_name" content="IsraTransfer"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="IsraTransfer | La Meilleure Façon d'Envoyer de l'Argent en Israël"/>
-  <meta name="twitter:description" content="Experts en change de devises depuis 2008. De meilleurs taux que les banques, aucuns frais cachés. Agréé et la confiance de plus de 15 000 clients."/>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+    <a href="index.html" class="nav-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
     <ul class="nav-links">
-      <li><a href="buying-property-fr.html">Achat Immobilier</a></li>
-      <li><a href="#">Particuliers</a></li>
-      <li><a href="#">À Propos</a></li>
+      <li><a href="buying-property.html" class="nav-active">Buying Property</a></li>
+      <li><a href="#">Personal</a></li>
+      <li><a href="#">About Us</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li>
         <div class="lang-dropdown" id="lang-dropdown">
-          <button class="lang-trigger" id="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Choisir la langue">
-            <span class="lang-flag">🇫🇷</span>
-            <span>FR</span>
+          <button class="lang-trigger" id="lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+            <span class="lang-flag">&#x1F1EC;&#x1F1E7;</span>
+            <span>EN</span>
             <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="lang-menu" role="menu">
-            <a href="/" class="lang-option" role="menuitem" hreflang="en">
-              <span class="lang-option-flag">🇬🇧</span>
+            <a href="buying-property.html" class="lang-option active" role="menuitem" hreflang="en">
+              <span class="lang-option-flag">&#x1F1EC;&#x1F1E7;</span>
               <span class="lang-option-label">English</span>
               <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             </a>
-            <a href="/fr.html" class="lang-option active" role="menuitem" hreflang="fr">
-              <span class="lang-option-flag">🇫🇷</span>
-              <span class="lang-option-label">Français</span>
+            <a href="buying-property-fr.html" class="lang-option" role="menuitem" hreflang="fr">
+              <span class="lang-option-flag">&#x1F1EB;&#x1F1F7;</span>
+              <span class="lang-option-label">Fran&ccedil;ais</span>
               <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             </a>
-            <a href="/he.html" class="lang-option" role="menuitem" hreflang="he">
-              <span class="lang-option-flag">🇮🇱</span>
-              <span class="lang-option-label">עברית</span>
+            <a href="buying-property-he.html" class="lang-option" role="menuitem" hreflang="he">
+              <span class="lang-option-flag">&#x1F1EE;&#x1F1F1;</span>
+              <span class="lang-option-label">&#1506;&#1489;&#1512;&#1497;&#1514;</span>
               <svg class="lang-option-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             </a>
           </div>
         </div>
       </li>
-      <li><a href="https://isratransfer.my.site.com/it/login" class="btn-login">Connexion Client</a></li>
-      <li><a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-nav">Ouvrir un Compte →</a></li>
+      <li><a href="https://isratransfer.my.site.com/it/login" class="btn-login">Client Login</a></li>
+      <li><a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-nav">Open Account &rarr;</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-drawer">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- MOBILE DRAWER -->
-<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
   <div class="mobile-drawer-inner">
-    <div class="mobile-lang-row" role="navigation" aria-label="Choisir la langue">
-      <a href="/" class="mobile-lang-opt" hreflang="en">🇬🇧 English</a>
-      <a href="/fr.html" class="mobile-lang-opt active" hreflang="fr">🇫🇷 Français</a>
-      <a href="/he.html" class="mobile-lang-opt" hreflang="he">🇮🇱 עברית</a>
+    <div class="mobile-lang-row" role="navigation" aria-label="Select language">
+      <a href="buying-property.html" class="mobile-lang-opt active" hreflang="en">&#x1F1EC;&#x1F1E7; English</a>
+      <a href="buying-property-fr.html" class="mobile-lang-opt" hreflang="fr">&#x1F1EB;&#x1F1F7; Fran&ccedil;ais</a>
+      <a href="buying-property-he.html" class="mobile-lang-opt" hreflang="he">&#x1F1EE;&#x1F1F1; &#1506;&#1489;&#1512;&#1497;&#1514;</a>
     </div>
     <ul class="mobile-nav-list" role="list">
-      <li><a href="buying-property-fr.html">Achat Immobilier <span class="mobile-nav-chevron">›</span></a></li>
-      <li><a href="#">Particuliers <span class="mobile-nav-chevron">›</span></a></li>
-      <li><a href="#">À Propos <span class="mobile-nav-chevron">›</span></a></li>
-      <li><a href="#faq">FAQ <span class="mobile-nav-chevron">›</span></a></li>
+      <li><a href="buying-property.html" style="color: var(--blue);">Buying Property <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#">Personal <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#">About Us <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
+      <li><a href="#faq">FAQ <span class="mobile-nav-chevron">&rsaquo;</span></a></li>
     </ul>
     <div class="mobile-cta-group">
-      <a href="https://isratransfer.my.site.com/it/login" style="border: 2px solid var(--blue); color: var(--blue);">Connexion Client</a>
-      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" style="background: linear-gradient(135deg, var(--blue), var(--teal)); color: #fff;">Ouvrir un Compte →</a>
+      <a href="https://isratransfer.my.site.com/it/login" style="border: 2px solid var(--blue); color: var(--blue);">Client Login</a>
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" style="background: linear-gradient(135deg, var(--blue), var(--teal)); color: #fff;">Open Account &rarr;</a>
     </div>
   </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
+  <div class="hero-inner hero-inner--single">
     <div class="hero-text">
       <h1 class="hero-h1 fade-up d1">
-        <span class="grad">Économisez Plus</span><br>
-        Quand Vous Envoyez<br>
-        De l'Argent Vers &amp; Depuis <span class="accent">Israël</span>
+        Buying Property in<br>
+        <span class="grad">Israel</span>? Save Thousands<br>
+        on <span class="accent">Currency Exchange</span>
       </h1>
-      <p class="hero-sub fade-up d2">De meilleurs taux de change que les banques. Zéro frais cachés. Agréé et de confiance depuis 2008. Rejoignez plus de 15 000 clients qui économisent sur chaque transfert.</p>
+      <p class="hero-sub fade-up d2">IsraTransfer specialises in property purchase transfers. Lock your exchange rate, save 1&ndash;3% vs banks, and transfer directly to your lawyer's trust account. Trusted by 2,500+ property buyers since 2008.</p>
       <div class="hero-cta fade-up d3">
-        <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-hero-primary">Ouvrir un Compte Gratuit</a>
-        <a href="https://www.isratransfer.com/contact" class="btn-hero-ghost">Parler à un Expert →</a>
+        <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-hero-primary">Open Free Account</a>
+        <a href="https://www.isratransfer.com/contact" class="btn-hero-ghost">Talk to a Property Expert &rarr;</a>
       </div>
       <div class="hero-trust fade-up d4">
         <div class="trust-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Agréé #57488
+          Licensed #57488
         </div>
         <div class="trust-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Chiffrement SSL
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          2,500+ Property Buyers
         </div>
         <div class="trust-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Ouverture Gratuite
+          Since 2008
         </div>
-      </div>
-    </div>
-
-    <div class="hero-visual fade-up d5">
-      <div class="rate-card">
-        <div class="rate-card-header">
-          <span class="rate-label">Taux de Change du Jour</span>
-          <div class="live-badge"><span class="live-dot"></span> EN DIRECT</div>
-        </div>
-        <div class="rate-rows">
-          <div class="rate-row">
-            <div class="rate-row-left">
-              <span class="rate-flag">🇺🇸</span>
-              <div><div class="rate-pair-name">USD → ILS</div><div class="rate-pair-sub">Dollar Américain</div></div>
-            </div>
-            <div><div class="rate-val">3.712</div><div class="rate-save-tag">↑ Meilleur que la banque</div></div>
-          </div>
-          <div class="rate-row">
-            <div class="rate-row-left">
-              <span class="rate-flag">🇬🇧</span>
-              <div><div class="rate-pair-name">GBP → ILS</div><div class="rate-pair-sub">Livre Sterling</div></div>
-            </div>
-            <div><div class="rate-val">4.701</div><div class="rate-save-tag">↑ Meilleur que la banque</div></div>
-          </div>
-          <div class="rate-row">
-            <div class="rate-row-left">
-              <span class="rate-flag">🇪🇺</span>
-              <div><div class="rate-pair-name">EUR → ILS</div><div class="rate-pair-sub">Euro</div></div>
-            </div>
-            <div><div class="rate-val">4.044</div><div class="rate-save-tag">↑ Meilleur que la banque</div></div>
-          </div>
-        </div>
-        <div class="savings-box">
-          <div class="savings-label">Vous économisez par rapport aux banques sur un transfert de 100 000$ :</div>
-          <div class="savings-amount">$2,400+</div>
-          <div class="savings-sub">Ouvrir un compte gratuit · Sans engagement</div>
-        </div>
-      </div>
-      <div class="float-badge fb1">
-        <div class="fb-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span>Agréé #57488</span>
-      </div>
-      <div class="float-badge fb2">
-        <div class="fb-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <span>Transferts en 1-2 Jours</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<section class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat"><span class="stat-num">₪10B+</span><span class="stat-lbl">Total Échangé</span></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><span class="stat-num" data-count="15000">0</span><span class="stat-lbl">Clients Satisfaits</span></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><span class="stat-num" data-count="2500">0</span><span class="stat-lbl">Acheteurs Immobiliers</span></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><span class="stat-num" data-count="16">0</span><span class="stat-lbl">Années de Confiance</span></div>
-  </div>
-</section>
-
-<!-- FEATURES -->
+<!-- KEY BENEFITS -->
 <section class="features">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <div class="s-eyebrow">Pourquoi Nous Choisir</div>
-      <h2 class="s-title">Conçu pour Ceux Qui Envoient<br>de l'Argent en Israël</h2>
-      <p class="s-sub">Nous comprenons les besoins des expatriés, des acheteurs immobiliers et des familles. Économisez et simplifiez chaque transfert.</p>
+      <div class="s-eyebrow">Why IsraTransfer for Property</div>
+      <h2 class="s-title">Save Thousands on Your<br>Property Purchase</h2>
+      <p class="s-sub">Everything you need for a smooth, cost-effective property transfer to Israel.</p>
     </div>
     <div class="feat-grid">
       <div class="feat-card reveal rd1">
         <div class="feat-icon-wrap">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <div class="feat-title">Meilleurs Taux</div>
-        <p class="feat-desc">Obtenez des taux de change nettement meilleurs que les banques traditionnelles. Plus de shekels pour chaque transfert — à chaque fois.</p>
+        <div class="feat-title">Better Exchange Rates</div>
+        <p class="feat-desc">Save 1&ndash;3% compared to banks on every transfer. On a $500,000 property, that's $5,000&ndash;$15,000 back in your pocket.</p>
       </div>
       <div class="feat-card reveal rd2">
         <div class="feat-icon-wrap">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
-        <div class="feat-title">Transferts Rapides</div>
-        <p class="feat-desc">L'argent arrive en 1 à 2 jours ouvrables. Idéal pour les transactions immobilières urgentes et le soutien familial.</p>
+        <div class="feat-title">Forward Contracts</div>
+        <p class="feat-desc">Lock in today's exchange rate for a future payment. Ideal for staged property purchases where you need certainty on price.</p>
+      </div>
+      <div class="feat-card reveal rd3">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="feat-title">Direct to Lawyer</div>
+        <p class="feat-desc">Funds transferred directly to your lawyer's trust account. We work with Israeli lawyers and developers regularly.</p>
+      </div>
+      <div class="feat-card reveal rd1">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="feat-title">Dedicated Managers</div>
+        <p class="feat-desc">Personal account managers who understand Israeli real estate. Professionals who speak your language and know the process.</p>
+      </div>
+      <div class="feat-card reveal rd2">
+        <div class="feat-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="feat-title">No Hidden Fees</div>
+        <p class="feat-desc">We take a lower margin than the banks, and we never charge additional or hidden fees. Full transparency, always.</p>
       </div>
       <div class="feat-card reveal rd3">
         <div class="feat-icon-wrap">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="feat-title">Entièrement Agréé</div>
-        <p class="feat-desc">Agréé par l'Autorité des Marchés des Capitaux, Assurances et Épargne #57488. Chiffrement SSL. Votre argent est en sécurité.</p>
-      </div>
-      <div class="feat-card reveal rd1">
-        <div class="feat-icon-wrap">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        </div>
-        <div class="feat-title">Application Mobile</div>
-        <p class="feat-desc">Gérez tout depuis votre téléphone. Applications iOS et Android avec alertes de taux en temps réel et suivi des transferts.</p>
-      </div>
-      <div class="feat-card reveal rd2">
-        <div class="feat-icon-wrap">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="feat-title">Support Expert</div>
-        <p class="feat-desc">Des gestionnaires de compte dédiés francophones qui comprennent l'achat immobilier et le marché israélien.</p>
-      </div>
-      <div class="feat-card reveal rd3">
-        <div class="feat-icon-wrap">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        </div>
-        <div class="feat-title">Aucuns Frais Cachés</div>
-        <p class="feat-desc">Tarification transparente. Ce que vous voyez est ce que vous obtenez. Pas de surprises, pas de petits caractères.</p>
+        <div class="feat-title">Licensed &amp; Regulated</div>
+        <p class="feat-desc">Fully licensed by Israel's Capital Market, Insurance &amp; Savings Authority (licence #57488). Your money is always protected.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- PROPERTY BUYING PROCESS -->
 <section class="process">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <div class="s-eyebrow">Processus Simple</div>
-      <h2 class="s-title">Commencez en Quelques Minutes</h2>
-      <p class="s-sub">Trois étapes faciles pour commencer à économiser sur chaque transfert vers Israël</p>
+      <div class="s-eyebrow">Step by Step</div>
+      <h2 class="s-title">The Property Buying Process</h2>
+      <p class="s-sub">From finding your dream home to getting the keys &mdash; we handle the currency side</p>
     </div>
     <div class="process-grid">
       <div class="process-step reveal rd1">
         <div class="step-num">1</div>
-        <div class="step-title">Inscription Gratuite</div>
-        <p class="step-desc">Créez votre compte gratuit en ligne en quelques minutes. Vérification rapide, approuvée sous 24 heures.</p>
+        <div class="step-title">Find &amp; Sign</div>
+        <p class="step-desc">Find your property and sign the purchase contract with your Israeli lawyer.</p>
       </div>
       <div class="process-step reveal rd2">
         <div class="step-num">2</div>
-        <div class="step-title">Bloquez Votre Taux</div>
-        <p class="step-desc">Obtenez un devis en direct et bloquez votre taux. Consultez tous les frais à l'avance avant de confirmer — sans surprises.</p>
+        <div class="step-title">Open Account</div>
+        <p class="step-desc">Create your free IsraTransfer account. Verified and approved within 24 hours.</p>
       </div>
       <div class="process-step reveal rd3">
         <div class="step-num">3</div>
-        <div class="step-title">Transférez les Fonds</div>
-        <p class="step-desc">Envoyez de l'argent et suivez-le en temps réel. Les shekels arrivent sur le compte israélien en 1 à 2 jours ouvrables.</p>
+        <div class="step-title">Lock Your Rate</div>
+        <p class="step-desc">Get a live quote and lock in your exchange rate. Forward contracts available for future payments.</p>
+      </div>
+      <div class="process-step reveal rd4">
+        <div class="step-num">4</div>
+        <div class="step-title">Transfer Funds</div>
+        <p class="step-desc">We convert and transfer directly to your lawyer's trust account. Track in real-time.</p>
+      </div>
+      <div class="process-step reveal rd5">
+        <div class="step-num">5</div>
+        <div class="step-title">Keys in Hand</div>
+        <p class="step-desc">Funds arrive in 1&ndash;2 business days. Completion proceeds, and you get the keys.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- WHAT YOU NEED TO KNOW -->
+<section class="info-section">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">Important Information</div>
+      <h2 class="s-title">What You Need to Know</h2>
+      <p class="s-sub">Key costs and considerations when buying property in Israel</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card reveal rd1">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="info-card-label">Purchase Tax</div>
+        <div class="info-card-title">Mas Rechisha</div>
+        <p class="info-card-desc">A graduated tax that must be paid within 60 days of signing the contract. Rates range from 3.5% to 10% depending on property value and buyer status.</p>
+      </div>
+      <div class="info-card reveal rd2">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="info-card-label">Legal Fees</div>
+        <div class="info-card-title">Lawyer &amp; Conveyancing</div>
+        <p class="info-card-desc">Legal fees typically run 0.5%&ndash;1.5% of the purchase price plus VAT. Your lawyer handles title searches, tax planning, and escrow.</p>
+      </div>
+      <div class="info-card reveal rd3">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="info-card-label">CPI Indexing</div>
+        <div class="info-card-title">Madad &mdash; Inflation Linking</div>
+        <p class="info-card-desc">New builds from a developer are linked to the Consumer Price Index (Madad). If inflation rises, your remaining payments increase accordingly.</p>
+      </div>
+      <div class="info-card reveal rd4">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="info-card-label">Budget</div>
+        <div class="info-card-title">Total Additional Costs</div>
+        <p class="info-card-desc">As a rule of thumb, budget an additional 10&ndash;15% above the purchase price for taxes, legal fees, agent fees, and other associated costs.</p>
+      </div>
+      <div class="info-card reveal rd5">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="info-card-label">Reporting</div>
+        <div class="info-card-title">Large Transfer Reporting</div>
+        <p class="info-card-desc">Transfers over $50,000 USD or 200,000 NIS must be reported to the Controller of Foreign Currency. We handle this documentation for you.</p>
+      </div>
+      <div class="info-card reveal rd6">
+        <div class="info-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="info-card-label">Olim Benefit</div>
+        <div class="info-card-title">Aliyah Tax Discount</div>
+        <p class="info-card-desc">Making Aliyah within 12&ndash;24 months of purchase? You may retroactively qualify for reduced purchase tax rates (0.5%&ndash;5%), saving significantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR LOCATIONS -->
+<section class="locations">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <div class="s-eyebrow">Popular Destinations</div>
+      <h2 class="s-title">Where Our Clients Buy</h2>
+      <p class="s-sub">Explore Israel's most popular cities for property investment</p>
+    </div>
+    <div class="locations-grid">
+      <div class="location-card reveal rd1">
+        <img src="https://placehold.co/600x480/1a2e4a/1a2e4a" alt="Jerusalem" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Jerusalem</div>
+          <div class="location-desc">Israel's capital. Rich history, vibrant culture, and strong property demand.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd2">
+        <img src="https://placehold.co/600x480/1a3a5c/1a3a5c" alt="Tel Aviv" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Tel Aviv</div>
+          <div class="location-desc">The economic hub. Mediterranean lifestyle, tech scene, and premium real estate.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd3">
+        <img src="https://placehold.co/600x480/1a4a6e/1a4a6e" alt="Netanya" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Netanya</div>
+          <div class="location-desc">Coastal city popular with English and French speakers. Beautiful beaches, growing market.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd1">
+        <img src="https://placehold.co/600x480/1a3550/1a3550" alt="Ra'anana" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Ra'anana</div>
+          <div class="location-desc">Family-friendly city with excellent schools. Thriving expat community in central Israel.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd2">
+        <img src="https://placehold.co/600x480/1a2844/1a2844" alt="Modi'in" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Modi'in</div>
+          <div class="location-desc">Modern planned city between Jerusalem and Tel Aviv. Perfect for young families.</div>
+        </div>
+      </div>
+      <div class="location-card reveal rd3">
+        <img src="https://placehold.co/600x480/1a3048/1a3048" alt="Bet Shemesh" class="location-img"/>
+        <div class="location-color-layer"></div>
+        <div class="location-overlay"></div>
+        <div class="location-info">
+          <div class="location-name">Bet Shemesh</div>
+          <div class="location-desc">Rapidly growing city near Jerusalem. Affordable options with strong community feel.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVINGS HIGHLIGHT -->
+<section class="savings-highlight">
+  <div class="savings-highlight-inner reveal">
+    <div class="s-eyebrow" style="color: rgba(255,255,255,.5);">Real Savings Example</div>
+    <div class="savings-big-number">$5,000 &ndash; $15,000</div>
+    <p class="savings-context">That's how much you could save on a $500,000 property purchase compared to using your bank. IsraTransfer clients save 1&ndash;3% on every transfer.</p>
+    <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">Get Your Free Quote</a>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
 <section class="testi">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <div class="s-eyebrow">Témoignages Clients</div>
-      <h2 class="s-title">La Confiance de Milliers de Clients</h2>
-      <p class="s-sub">Ne nous croyez pas sur parole — voici ce que disent nos clients</p>
+      <div class="s-eyebrow">Client Story</div>
+      <h2 class="s-title">Hear From a Property Buyer</h2>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal rd1">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote-mark">"</div>
-        <p class="testi-text">I've used IsraTransfer for over eight years — excellent customer care and always get me better rates than the bank. Wouldn't use anyone else.</p>
-        <div class="testi-author"><div class="testi-av">SM</div><div><div class="testi-name">Spencer Morris</div><div class="testi-role">Client depuis 2016</div></div></div>
-      </div>
-      <div class="testi-card reveal rd2">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote-mark">"</div>
-        <p class="testi-text">The customer service support is excellent, and financial transfers through their website are very efficient. Highly recommended.</p>
-        <div class="testi-author"><div class="testi-av">JH</div><div><div class="testi-name">Jonathan Harrison</div><div class="testi-role">Client vérifié</div></div></div>
-      </div>
-      <div class="testi-card reveal rd3">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote-mark">"</div>
-        <p class="testi-text">With my limited Hebrew, it was a pleasure to deal with IsraTransfer who guided me through the whole process of buying my apartment.</p>
-        <div class="testi-author"><div class="testi-av">DW</div><div><div class="testi-name">Deborah Weissman</div><div class="testi-role">Acheteur immobilier, Tel Aviv</div></div></div>
+    <div style="max-width: 700px; margin: 0 auto;">
+      <div class="testi-card reveal" style="text-align: center;">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">With my limited Hebrew, it was a pleasure to deal with IsraTransfer who guided me through the whole process of buying my apartment. They saved me thousands on the exchange rate and made everything simple.</p>
+        <div class="testi-author" style="justify-content: center;">
+          <div class="testi-av">DW</div>
+          <div><div class="testi-name">Deborah Weissman</div><div class="testi-role">Property buyer, Tel Aviv</div></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="faq-section" id="faq" aria-label="Questions fréquemment posées">
+<section class="faq-section" id="faq" aria-label="Property buying frequently asked questions">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <div class="s-eyebrow">Des Questions ?</div>
-      <h2 class="s-title">Questions Fréquemment<br>Posées</h2>
-      <p class="s-sub">Tout ce que vous devez savoir sur les transferts d'argent vers et depuis Israël.</p>
+      <div class="s-eyebrow">Property FAQ</div>
+      <h2 class="s-title">Frequently Asked<br>Questions</h2>
+      <p class="s-sub">Everything you need to know about transferring money for a property purchase in Israel.</p>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal rd1">
         <button class="faq-q" aria-expanded="false">
-          Combien de temps prend un transfert vers ou depuis Israël ?
+          How do I transfer money for a property purchase in Israel?
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">La plupart des transferts sont effectués en 1 à 2 jours ouvrables. Une fois votre taux bloqué et les fonds envoyés, nous nous occupons de tout. Le traitement le jour même est disponible pour les transferts reçus avant notre heure limite quotidienne.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Open an IsraTransfer account (free, takes minutes), then lock in your exchange rate and transfer funds from your bank to us. We convert the currency and wire the shekels directly to your lawyer's trust account in Israel. The whole process typically takes 1&ndash;2 business days.</div></div>
       </div>
       <div class="faq-item reveal rd2">
         <button class="faq-q" aria-expanded="false">
-          Quelles devises puis-je transférer vers ou depuis Israël ?
+          Can I lock in an exchange rate before completion?
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Nous traitons toutes les principales devises associées au Shekel israélien (ILS) — y compris USD, GBP, EUR, CAD, AUD, CHF et plus encore. Que vous envoyiez de l'argent en Israël ou rapatriiez des fonds à l'étranger, nous vous couvrons.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. Forward contracts allow you to lock in today's exchange rate for a transfer at a future date. This is especially popular for staged property payments where you need certainty on the final cost. Your account manager will explain the options based on your timeline.</div></div>
       </div>
       <div class="faq-item reveal rd3">
         <button class="faq-q" aria-expanded="false">
-          Comment vos taux de change se comparent-ils aux banques ?
+          What documents do I need for a property transfer?
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Nos clients économisent généralement 1 à 3 % par rapport aux grandes banques. Nous travaillons à partir du taux interbancaire de gros et divulguons notre marge à l'avance — pas de frais cachés, pas de surprises. Sur un transfert de 100 000 $, cela représente une économie de 1 000 à 3 000 $.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">You'll need a valid ID, proof of address, and a source-of-funds declaration. For property transfers, we may also request a copy of the purchase contract. Your dedicated account manager will guide you through exactly what's required for your specific transaction.</div></div>
       </div>
       <div class="faq-item reveal rd4">
         <button class="faq-q" aria-expanded="false">
-          Puis-je transférer de l'argent depuis Israël ?
+          How long does the transfer take?
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Absolument. Nous sommes spécialisés dans les transferts vers et depuis Israël. Que vous rapatriiez des fonds de pension, payiez des fournisseurs étrangers ou envoyiez de l'argent à votre famille à l'étranger, notre équipe gère l'ensemble du processus, y compris la documentation requise par la Banque d'Israël.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Most property transfers complete within 1&ndash;2 business days from the time we receive your funds. Same-day processing is available for transfers received before our daily cut-off time. Your account manager can coordinate timing with your lawyer to meet any deadlines.</div></div>
       </div>
       <div class="faq-item reveal rd5">
         <button class="faq-q" aria-expanded="false">
-          IsraTransfer est-il agréé et réglementé ?
+          Can foreigners buy property in Israel?
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Oui. IsraTransfer est entièrement agréé par l'Autorité israélienne des Marchés des Capitaux, Assurances et Épargne (licence #57488). Nous opérons selon des exigences strictes de lutte contre le blanchiment et de connaissance du client, et vos fonds sont toujours protégés.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. Foreign nationals can buy property in Israel with very few restrictions. You don't need to be a resident or citizen. However, foreign buyers are subject to higher purchase tax rates (starting at 8%). If you make Aliyah within 12&ndash;24 months, you may qualify for reduced rates retroactively.</div></div>
       </div>
       <div class="faq-item reveal rd6">
         <button class="faq-q" aria-expanded="false">
-          Comment ouvrir un compte ?
+          What is purchase tax (Mas Rechisha)?
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">L'ouverture d'un compte est gratuite et ne prend que quelques minutes en ligne. Nous vérifierons votre identité (vérifications KYC standard), qui est généralement approuvée sous 24 heures. Une fois approuvé, vous pouvez bloquer des taux et transférer immédiatement via notre portail en ligne ou notre application mobile.</div></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false">
-          Quels documents sont nécessaires ?
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Pour la plupart des transferts personnels, une pièce d'identité valide et une déclaration de l'origine des fonds suffisent. Pour les transactions plus importantes ou commerciales, des documents supplémentaires peuvent être requis — votre gestionnaire de compte dédié vous guidera exactement sur ce qui est nécessaire pour votre situation.</div></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false">
-          Proposez-vous des contrats à terme ou des alertes de taux ?
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-gray)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Oui aux deux. Les contrats à terme vous permettent de bloquer le taux du jour pour un futur transfert — idéal pour les achats immobiliers ou les paiements réguliers nécessitant une certitude. Les alertes de taux vous informent dès que le marché atteint votre objectif, pour ne jamais manquer le bon moment pour transférer.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Purchase tax is a mandatory government tax on property acquisitions in Israel. It's calculated on a sliding scale based on the property value. The tax must be paid within 60 days of signing the contract. Rates differ for Israeli residents, foreign buyers, and new immigrants (Olim). Your lawyer will calculate the exact amount.</div></div>
       </div>
     </div>
   </div>
@@ -969,11 +1031,11 @@
 <!-- CTA -->
 <section class="cta-section">
   <div class="cta-inner reveal">
-    <h2 class="cta-h2">Prêt à <span class="grad">Économiser des Milliers</span> ?</h2>
-    <p class="cta-p">Rejoignez plus de 15 000 clients satisfaits qui font confiance à IsraTransfer pour de meilleurs taux, un meilleur service et une totale tranquillité d'esprit.</p>
+    <h2 class="cta-h2">Ready to Buy Property in <span class="grad">Israel</span>?</h2>
+    <p class="cta-p">Join 2,500+ property buyers who saved thousands with IsraTransfer. Better rates, expert support, and total peace of mind.</p>
     <div class="cta-btns">
-      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">Ouvrir un Compte Gratuit</a>
-      <a href="https://www.isratransfer.com/contact" class="btn-cta-outline">Parler à un Expert</a>
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">Open Free Account</a>
+      <a href="https://www.isratransfer.com/contact" class="btn-cta-outline">Talk to a Property Expert</a>
     </div>
   </div>
 </section>
@@ -982,60 +1044,60 @@
 <footer>
   <div class="footer-main">
     <div>
-      <a href="#" class="footer-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
-      <p class="footer-tagline">Experts en change de devises depuis 2008. De meilleurs taux que les banques, aucuns frais cachés, un service de première classe pour les transferts vers et depuis Israël.</p>
+      <a href="index.html" class="footer-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+      <p class="footer-tagline">Currency exchange experts since 2008. Better rates than banks, no hidden fees, first-class service for transfers to and from Israel.</p>
       <div class="footer-contact-item">
         <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <a href="mailto:info@isratransfer.com">info@isratransfer.com</a>
       </div>
       <div class="footer-contact-item">
         <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.73-1.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <a href="/contact">Nous Contacter</a>
+        <a href="/contact">Contact Us</a>
       </div>
       <div class="footer-licence-badge">
-        <p>🏛 Agréé et Réglementé<br/><strong>Licence N° 57488</strong><br/>Autorité des Marchés des Capitaux, Assurances et Épargne</p>
+        <p>&#x1F3DB; Licensed &amp; Regulated<br/><strong>Licence No. 57488</strong><br/>Capital Market, Insurance &amp; Savings Authority</p>
       </div>
     </div>
     <div class="footer-col">
-      <h4>Achat Immobilier</h4>
+      <h4>Buying Property</h4>
       <ul>
-        <li><a href="/buying-property-in-israel">Acheter en Israël</a></li>
-        <li><a href="/realestateinisrael">Immobilier en Israël</a></li>
-        <li><a href="/citiesinisrael">Explorer les Villes d'Israël</a></li>
+        <li><a href="buying-property.html">Buy Property in Israel</a></li>
+        <li><a href="/realestateinisrael">Real Estate in Israel</a></li>
+        <li><a href="/citiesinisrael">Explore Israel's Cities</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Particuliers</h4>
+      <h4>Personal</h4>
       <ul>
-        <li><a href="/transfer-money-israel">Transferts d'Argent</a></li>
-        <li><a href="/makingaliyah">Faire son Aliyah</a></li>
-        <li><a href="/money-transfer-app">Accès en Ligne</a></li>
+        <li><a href="/transfer-money-israel">Money Transfers</a></li>
+        <li><a href="/makingaliyah">Making Aliyah</a></li>
+        <li><a href="/money-transfer-app">Online Access</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Entreprise</h4>
+      <h4>Company</h4>
       <ul>
-        <li><a href="/about">À Propos d'IsraTransfer</a></li>
-        <li><a href="/team">Notre Équipe</a></li>
-        <li><a href="/license">Notre Licence</a></li>
-        <li><a href="/csr">Responsabilité Sociale</a></li>
+        <li><a href="/about">About IsraTransfer</a></li>
+        <li><a href="/team">Meet the Team</a></li>
+        <li><a href="/license">Our Licence</a></li>
+        <li><a href="/csr">Social Responsibility</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="/careers">Carrières</a></li>
-        <li><a href="/contact">Nous Contacter</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/contact">Contact Us</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
       <div class="footer-bottom-left">
-        <span class="footer-bottom-copy">© 2025 IsraTransfer Ltd. Tous droits réservés.</span>
-        <span class="footer-regulated">Réglementé par <span>Autorité des Marchés des Capitaux, Assurances et Épargne</span> · Licence 57488</span>
+        <span class="footer-bottom-copy">&copy; 2025 IsraTransfer Ltd. All rights reserved.</span>
+        <span class="footer-regulated">Regulated by <span>Capital Market, Insurance &amp; Savings Authority</span> &middot; Licence 57488</span>
       </div>
       <div class="footer-bottom-links">
-        <a href="#">Politique de Confidentialité</a>
-        <a href="#">Conditions d'Utilisation</a>
-        <a href="#">Politique de Cookies</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
       </div>
     </div>
   </div>
@@ -1051,14 +1113,14 @@
     hamburger.classList.add('open');
     drawer.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
-    hamburger.setAttribute('aria-label', 'Fermer le menu');
+    hamburger.setAttribute('aria-label', 'Close menu');
     document.body.style.overflow = 'hidden';
   }
   function closeMenu() {
     hamburger.classList.remove('open');
     drawer.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+    hamburger.setAttribute('aria-label', 'Open menu');
     document.body.style.overflow = '';
   }
   hamburger.addEventListener('click', function() {
@@ -1104,29 +1166,6 @@
     e.forEach(function(x) { if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
-
-  // ── Counters ──
-  function countUp(el, target, suffix) {
-    suffix = suffix || '';
-    var s = null;
-    (function step(ts) {
-      if (!s) s = ts;
-      var p = Math.min((ts - s) / 1800, 1), ease = 1 - Math.pow(1 - p, 3);
-      var v = Math.floor(ease * target);
-      el.textContent = (v >= 1000 ? v.toLocaleString() : v) + suffix;
-      if (p < 1) requestAnimationFrame(step);
-    })(performance.now());
-  }
-  var co = new IntersectionObserver(function(e) {
-    e.forEach(function(x) {
-      if (x.isIntersecting) {
-        var el = x.target, c = +el.dataset.count;
-        countUp(el, c, '+');
-        co.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(function(el) { co.observe(el); });
 
   // ── FAQ accordion ──
   document.querySelectorAll('.faq-q').forEach(function(btn) {
