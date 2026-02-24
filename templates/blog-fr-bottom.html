@@ -1,0 +1,160 @@
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <h2 class="cta-h2">Pr&ecirc;t &agrave; transf&eacute;rer de l'argent en <span class="grad">Isra&euml;l</span> ?</h2>
+    <p class="cta-p">Rejoignez des milliers de clients satisfaits qui &eacute;conomisent sur chaque transfert. Meilleurs taux, accompagnement expert et tranquillit&eacute; totale.</p>
+    <div class="cta-btns">
+      <a href="https://in.sumsub.com/websdk/p/uni_lfxjHFvcTjLICahB" class="btn-cta-primary">Ouvrir un Compte Gratuit</a>
+      <a href="https://www.isratransfer.com/contact" class="btn-cta-outline">Parler &agrave; un Expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <a href="fr.html" class="footer-logo"><img src="brand_assets/logo.png" alt="IsraTransfer"/></a>
+      <p class="footer-tagline">Experts en change de devises depuis 2008. Meilleurs taux que les banques, sans frais cach&eacute;s, service de premier ordre pour les transferts vers et depuis Isra&euml;l.</p>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <a href="mailto:info@isratransfer.com">info@isratransfer.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.73-1.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <a href="/contact">Contactez-nous</a>
+      </div>
+      <div class="footer-licence-badge">
+        <p>&#x1F3DB; Licenci&eacute; et R&eacute;glement&eacute;<br/><strong>Licence N&deg; 57488</strong><br/>Autorit&eacute; des March&eacute;s des Capitaux</p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Achat Immobilier</h4>
+      <ul>
+        <li><a href="buying-property-fr.html">Acheter en Isra&euml;l</a></li>
+        <li><a href="/realestateinisrael">Immobilier en Isra&euml;l</a></li>
+        <li><a href="/citiesinisrael">Villes d'Isra&euml;l</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Particuliers</h4>
+      <ul>
+        <li><a href="/transfer-money-israel">Transferts d'Argent</a></li>
+        <li><a href="/makingaliyah">Faire son Aliyah</a></li>
+        <li><a href="/money-transfer-app">Acc&egrave;s en Ligne</a></li>
+        <li><a href="blog-fr.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <ul>
+        <li><a href="/about">&Agrave; Propos d'IsraTransfer</a></li>
+        <li><a href="/team">L'&Eacute;quipe</a></li>
+        <li><a href="/license">Notre Licence</a></li>
+        <li><a href="/csr">Responsabilit&eacute; Sociale</a></li>
+        <li><a href="blog-fr.html">Blog</a></li>
+        <li><a href="/careers">Carri&egrave;res</a></li>
+        <li><a href="/contact">Contactez-nous</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-bottom-left">
+        <span class="footer-bottom-copy">&copy; 2025 IsraTransfer Ltd. Tous droits r&eacute;serv&eacute;s.</span>
+        <span class="footer-regulated">R&eacute;glement&eacute; par <span>l'Autorit&eacute; des March&eacute;s des Capitaux</span> &middot; Licence 57488</span>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#">Politique de Confidentialit&eacute;</a>
+        <a href="#">Conditions d'Utilisation</a>
+        <a href="#">Politique de Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ──
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('mobile-drawer');
+  var drawerLinks = drawer.querySelectorAll('a');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Fermer le menu');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  drawerLinks.forEach(function(link) {
+    link.addEventListener('click', function() { closeMenu(); });
+  });
+  document.addEventListener('click', function(e) {
+    if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeMenu();
+  });
+
+  // ── Language dropdown ──
+  var langDropdown = document.getElementById('lang-dropdown');
+  var langTrigger = document.getElementById('lang-trigger');
+  if (langDropdown && langTrigger) {
+    langTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = langDropdown.classList.toggle('open');
+      langTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function(e) {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        langDropdown.classList.remove('open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ── Scroll reveal ──
+  var obs = new IntersectionObserver(function(e) {
+    e.forEach(function(x) { if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // ── Category filter ──
+  var catBtns = document.querySelectorAll('.cat-btn');
+  var blogCards = document.querySelectorAll('.blog-card, .featured-post');
+  catBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      catBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.getAttribute('data-cat');
+      blogCards.forEach(function(card) {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

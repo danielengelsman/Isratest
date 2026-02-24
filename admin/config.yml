@@ -1,0 +1,122 @@
+backend:
+  name: github
+  repo: danielengelsman/Isratest
+  branch: main
+
+media_folder: "images/blog"
+public_folder: "/images/blog"
+
+collections:
+  # ── English Blog Posts ──
+  - name: "blog-en"
+    label: "Blog (English)"
+    folder: "content/blog/en"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+        pattern:
+          - '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+          - "Lowercase letters, numbers, and hyphens only"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Israel Real Estate", value: "real-estate" }
+          - { label: "The Shekel Exchange", value: "economy" }
+          - { label: "The Team", value: "team" }
+          - { label: "Podcasts", value: "podcasts" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Image Alt Text", name: "image_alt", widget: "string" }
+      - label: "Featured Post"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Mark as the featured/highlighted post on the blog page"
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ── French Blog Posts ──
+  - name: "blog-fr"
+    label: "Blog (Français)"
+    folder: "content/blog/fr"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+        pattern:
+          - '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+          - "Lowercase letters, numbers, and hyphens only"
+      - label: "Date de Publication"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: "Catégorie"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Immobilier en Israël", value: "real-estate" }
+          - { label: "Le Change du Shekel", value: "economy" }
+          - { label: "L'Équipe", value: "team" }
+          - { label: "Podcasts", value: "podcasts" }
+      - { label: "Extrait", name: "excerpt", widget: "text" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Texte Alt de l'Image", name: "image_alt", widget: "string" }
+      - label: "Article Vedette"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Marquer comme article vedette sur la page blog"
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  # ── Hebrew Blog Posts ──
+  - name: "blog-he"
+    label: "Blog (עברית)"
+    folder: "content/blog/he"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "כותרת", name: "title", widget: "string" }
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+        pattern:
+          - '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+          - "Lowercase letters, numbers, and hyphens only"
+      - label: "תאריך פרסום"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: "קטגוריה"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "נדל\"ן בישראל", value: "real-estate" }
+          - { label: "שער השקל", value: "economy" }
+          - { label: "הצוות", value: "team" }
+          - { label: "פודקאסטים", value: "podcasts" }
+      - { label: "תקציר", name: "excerpt", widget: "text" }
+      - { label: "תמונה", name: "image", widget: "image", required: false }
+      - { label: "טקסט חלופי לתמונה", name: "image_alt", widget: "string" }
+      - label: "מאמר ראשי"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "סמן כמאמר הראשי בדף הבלוג"
+      - { label: "תוכן", name: "body", widget: "markdown" }

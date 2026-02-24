@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "node build.mjs",
+    "dev": "node serve.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +21,9 @@
   },
   "homepage": "https://github.com/danielengelsman/Isratest#readme",
   "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
     "puppeteer": "^24.37.5"
   }
 }
