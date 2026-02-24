@@ -3,12 +3,7 @@ name: Build and Deploy Blog
 on:
   push:
     branches: [main]
-    paths:
-      - 'content/**'
-      - 'templates/**'
-      - 'build.mjs'
-      - 'admin/**'
-      - 'images/**'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -35,10 +30,17 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --omit=dev
 
       - name: Build blog pages
         run: node build.mjs
+
+      - name: Prepare deploy directory
+        run: |
+          mkdir -p _site
+          cp -r *.html admin/ brand_assets/ images/ _site/ 2>/dev/null || true
+          cp -r content/ _site/ 2>/dev/null || true
+          touch _site/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
